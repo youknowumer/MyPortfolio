@@ -153,6 +153,45 @@ Provides a structured professional overview.
 
 ---
 
+# 🗂 Project Structure
+
+```
+MyPortfolio/
+├── index.html              # markup only
+├── css/
+│   ├── base.css            # variables, layout, sections, responsive rules
+│   ├── documents.css       # CV / cover-letter cards and preview modal
+│   ├── polish.css          # glass refinements, breakpoints, print styles
+│   ├── ai-chat.css         # AI assistant panel
+│   ├── back-to-top.css
+│   ├── effects.css         # orbs, grain, scrollbars
+│   ├── sparkles.css
+│   ├── glass-theme.css     # final glass pass
+│   ├── premium.css         # command palette, tilt, clock, …
+│   └── tabbar.css          # ★ tab bar (desktop header + mobile dock)
+├── js/
+│   ├── main.js             # cursor, scroll, menu, skills tabs, reveal, contact form
+│   ├── ai-chat.js          # AI assistant knowledge base + UI
+│   ├── documents.js        # CV / cover-letter preview modal
+│   ├── effects.js          # hero stars + sparkle canvas
+│   ├── radar-chart.js      # skills radar (canvas)
+│   ├── premium.js          # command palette (Ctrl/⌘+K), tilt, shortcuts
+│   └── tabbar.js           # ★ active-tab logic
+└── assets/
+    ├── images/             # Logo.png, profile.jpg
+    └── docs/               # CV and cover-letter PDFs
+```
+
+Stylesheets and scripts load in the order listed in `index.html` – keep that order.
+
+## Tab bar
+
+The navigation is a dark pill: every tab shows an outline icon, and the active tab expands into a white pill with a filled icon and its label. On screens up to 768px it becomes a floating dock at the bottom of the screen.
+
+All colours and sizes are variables at the top of `css/tabbar.css` (`--tab-bar-bg`, `--tab-active-bg`, `--tab-size`, …). To add a tab, add an `<li>` to `#navLinks` in `index.html` – `js/tabbar.js` picks it up automatically.
+
+---
+
 # 🎨 Design Philosophy
 
 The design follows a modern digital product approach.

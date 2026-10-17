@@ -1,0 +1,305 @@
+/* AI assistant chat panel */
+
+/* ══════════════════════════════════════════
+   AI SECTION — iOS 26 Liquid Glass LIGHT Theme
+══════════════════════════════════════════ */
+
+/* ── Overlay backdrop ── */
+#aiChatOverlay {
+  display:none;
+  position:fixed; inset:0; z-index:8000;
+  background:rgba(10,30,20,0.06);
+  backdrop-filter:blur(8px) saturate(150%);
+  -webkit-backdrop-filter:blur(8px) saturate(150%);
+  align-items:flex-end; justify-content:flex-end;
+  padding-bottom:2rem; padding-right:2rem;
+}
+#aiChatOverlay.open { display:flex; }
+
+/* ── Main Panel — Pure iOS 26 Light Glass ── */
+#aiChatPanel {
+  width:460px; max-width:calc(100vw - 2rem);
+  height:clamp(540px,75vh,720px);
+  display:flex; flex-direction:column;
+  border-radius:32px;
+  background:linear-gradient(150deg,rgba(255,255,255,0.92) 0%,rgba(236,251,243,0.88) 40%,rgba(220,246,234,0.85) 70%,rgba(240,252,247,0.90) 100%);
+  backdrop-filter:blur(72px) saturate(320%) brightness(1.06);
+  -webkit-backdrop-filter:blur(72px) saturate(320%) brightness(1.06);
+  border:1px solid rgba(255,255,255,0.98);
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  box-shadow:
+    inset 0 3px 0 rgba(255,255,255,1),
+    inset 0 -1px 0 rgba(212,129,58,0.05),
+    inset 2px 0 0 rgba(255,255,255,0.85),
+    inset -2px 0 0 rgba(255,255,255,0.85),
+    0 32px 80px rgba(212,129,58,0.17),
+    0 8px 32px rgba(0,0,0,0.08),
+    0 0 0 0.5px rgba(212,129,58,0.14),
+    0 0 0 1px rgba(255,255,255,0.6);
+  overflow:hidden;
+  animation:aiPanelIn .42s cubic-bezier(.34,1.3,.64,1) both;
+  position:relative;
+}
+@keyframes aiPanelIn { from{opacity:0;transform:translateY(30px) scale(.95)} to{opacity:1;transform:none} }
+
+/* Specular top edge */
+#aiChatPanel::before {
+  content:''; position:absolute; top:0; left:8%; right:8%; height:1.5px;
+  background:linear-gradient(90deg,transparent 0%,rgba(232,168,78,0.4) 15%,rgba(255,255,255,1) 35%,rgba(242,204,138,0.9) 50%,rgba(255,255,255,1) 65%,rgba(212,129,58,0.4) 85%,transparent 100%);
+  border-radius:999px; pointer-events:none; z-index:10;
+}
+#aiChatPanel::after {
+  content:''; position:absolute; bottom:0; left:15%; right:15%; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,129,58,0.15),transparent);
+  pointer-events:none; z-index:10;
+}
+
+/* ── Panel Header ── */
+.aichat-header {
+  display:flex; align-items:center; gap:.9rem;
+  padding:1.1rem 1.4rem 1rem;
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  flex-shrink:0; position:relative; z-index:2;
+  background:linear-gradient(180deg,rgba(255,255,255,0.35) 0%,transparent 100%);
+}
+.aichat-avatar-wrap { position:relative; flex-shrink:0; }
+.aichat-avatar {
+  width:46px; height:46px; border-radius:14px;
+  background:linear-gradient(135deg,#D4813A,#A85E22);
+  border:1px solid rgba(255,255,255,0.65);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  box-shadow:0 4px 20px rgba(212,129,58,0.35),inset 0 1.5px 0 rgba(255,255,255,0.4);
+}
+.aichat-avatar-icon { font-size:1.25rem; position:relative; z-index:2; animation:aiAvatarPulse 3s ease-in-out infinite; }
+@keyframes aiAvatarPulse { 0%,100%{filter:drop-shadow(0 0 4px rgba(255,255,255,0.8))} 50%{filter:drop-shadow(0 0 10px rgba(255,255,255,1))} }
+.aichat-avatar-glow {
+  position:absolute; inset:-100%; border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 60%,rgba(255,255,255,0.4) 75%,rgba(242,204,138,0.5) 80%,rgba(255,255,255,0.3) 85%,transparent 100%);
+  animation:aiSpin 3s linear infinite; z-index:1;
+}
+@keyframes aiSpin { to{transform:rotate(360deg)} }
+.aichat-online-dot {
+  position:absolute; bottom:-3px; right:-3px;
+  width:12px; height:12px; border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#F2CC8A,#D4813A);
+  border:2.5px solid rgba(255,255,255,0.98);
+  box-shadow:0 0 8px rgba(212,129,58,0.8);
+  animation:aiDotPulse 2s ease-in-out infinite;
+}
+@keyframes aiDotPulse { 0%,100%{box-shadow:0 0 6px rgba(212,129,58,0.8)} 50%{box-shadow:0 0 14px rgba(212,129,58,1),0 0 24px rgba(232,168,78,0.4)} }
+.aichat-identity { flex:1; min-width:0; }
+.aichat-name { font-size:.98rem; font-weight:800; letter-spacing:-.2px; color:var(--text); display:block; margin-bottom:.15rem; }
+.aichat-status { display:flex; align-items:center; gap:.45rem; font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--green-dk); }
+.aichat-status-dot { width:5px; height:5px; border-radius:50%; background:var(--green); box-shadow:0 0 6px rgba(212,129,58,0.9); animation:aiDotPulse 2s infinite; }
+.aichat-header-actions { display:flex; gap:.4rem; align-items:center; flex-shrink:0; }
+.aichat-hbtn {
+  width:32px; height:32px; border-radius:10px; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.72rem; transition:all .2s ease;
+  background:rgba(255,255,255,0.65); color:var(--muted);
+  border:1px solid rgba(255,255,255,0.92);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 2px 6px rgba(212,129,58,0.06);
+}
+.aichat-hbtn:hover { background:rgba(255,255,255,0.96); color:var(--green-dk); border-color:rgba(212,129,58,0.2); transform:scale(1.05); box-shadow:0 4px 14px rgba(212,129,58,0.14); }
+.aichat-hbtn.danger:hover { background:rgba(239,68,68,0.07); color:#ef4444; border-color:rgba(239,68,68,0.18); }
+.aichat-hbtn-close { background:rgba(239,68,68,0.04) !important; color:rgba(239,68,68,0.4) !important; }
+.aichat-hbtn-close:hover { background:rgba(239,68,68,0.10) !important; color:#ef4444 !important; }
+
+/* ── Mode selector ── */
+.aichat-modes {
+  display:flex; gap:.25rem; padding:.65rem 1.1rem;
+  border-bottom:1px solid rgba(255,255,255,0.55);
+  flex-shrink:0; position:relative; z-index:2;
+  background:rgba(255,255,255,0.2);
+}
+.aichat-mode-btn {
+  flex:1; padding:.4rem .5rem; border-radius:10px; border:none; cursor:pointer;
+  font-family:'Sora',sans-serif; font-size:.7rem; font-weight:700;
+  color:var(--muted); background:transparent;
+  transition:all .22s cubic-bezier(.34,1.3,.64,1);
+  display:flex; align-items:center; justify-content:center; gap:.3rem;
+  border:1px solid transparent; letter-spacing:.05px;
+}
+.aichat-mode-btn:hover:not(.active) { background:rgba(255,255,255,0.78); color:var(--text2); border-color:rgba(255,255,255,0.92); box-shadow:inset 0 1px 0 rgba(255,255,255,0.95); }
+.aichat-mode-btn.active { background:linear-gradient(135deg,#D4813A,#A85E22); color:white; border-color:transparent; box-shadow:0 4px 14px rgba(212,129,58,0.35),inset 0 1.5px 0 rgba(255,255,255,0.3); }
+
+/* ── Chips ── */
+.aichat-chips-wrap { padding:.6rem 1.1rem .4rem; flex-shrink:0; position:relative; z-index:2; border-bottom:1px solid rgba(255,255,255,0.55); }
+.aichat-chips-label { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:.5rem; }
+.aichat-chips { display:flex; gap:.4rem; overflow-x:auto; scrollbar-width:none; padding-bottom:.1rem; }
+.aichat-chips::-webkit-scrollbar { display:none; }
+.aichat-chip {
+  padding:.32rem .82rem; border-radius:99px; white-space:nowrap; flex-shrink:0;
+  font-size:.68rem; font-weight:700; cursor:pointer; letter-spacing:.1px;
+  background:rgba(255,255,255,0.75); border:1px solid rgba(255,255,255,0.94);
+  color:var(--green-dk); transition:all .2s ease; font-family:'Sora',sans-serif;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.97),0 2px 6px rgba(212,129,58,0.07);
+}
+.aichat-chip:hover { background:linear-gradient(135deg,#D4813A,#A85E22); color:white; border-color:transparent; box-shadow:0 4px 14px rgba(212,129,58,0.35); transform:translateY(-1.5px); }
+
+/* ── Messages ── */
+.aichat-messages {
+  flex:1; overflow-y:auto; padding:1rem 1.2rem;
+  display:flex; flex-direction:column; gap:.9rem;
+  position:relative; z-index:2;
+  scrollbar-width:thin; scrollbar-color:rgba(212,129,58,0.18) transparent;
+}
+.aichat-messages::-webkit-scrollbar { width:3px; }
+.aichat-messages::-webkit-scrollbar-thumb { background:rgba(212,129,58,0.2); border-radius:4px; }
+.aichat-msg { display:flex; gap:.6rem; align-items:flex-end; max-width:90%; animation:aiMsgIn .28s cubic-bezier(.34,1.3,.64,1) both; }
+@keyframes aiMsgIn {from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:none}}
+.aichat-msg.user { flex-direction:row-reverse; margin-left:auto; }
+.aichat-msg-icon {
+  width:28px; height:28px; border-radius:9px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:.75rem;
+  background:linear-gradient(135deg,#D4813A,#A85E22); border:1px solid rgba(255,255,255,0.5);
+  color:white; box-shadow:0 3px 10px rgba(212,129,58,0.3);
+}
+.aichat-msg.user .aichat-msg-icon {
+  background:rgba(255,255,255,0.75); border:1px solid rgba(255,255,255,0.92);
+  color:var(--green-dk); box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),0 2px 6px rgba(0,0,0,0.05);
+}
+.aichat-msg-wrap { display:flex; flex-direction:column; gap:.2rem; max-width:100%; }
+.aichat-bubble { padding:.78rem 1rem; border-radius:16px; font-size:.855rem; line-height:1.7; font-weight:400; }
+.aichat-msg.bot .aichat-bubble {
+  background:rgba(255,255,255,0.90); border:1px solid rgba(255,255,255,0.97);
+  border-bottom-left-radius:5px; color:var(--text);
+  box-shadow:0 4px 16px rgba(212,129,58,0.07),inset 0 1.5px 0 rgba(255,255,255,1);
+}
+.aichat-msg.bot .aichat-bubble strong { color:var(--green-dk); font-weight:700; }
+.aichat-msg.bot .aichat-bubble em { color:var(--green); }
+.aichat-msg.bot .aichat-bubble code { background:rgba(212,129,58,0.08); padding:.1rem .4rem; border-radius:5px; font-size:.8em; font-family:monospace; border:1px solid rgba(212,129,58,0.15); color:var(--green-dk); }
+.aichat-msg.user .aichat-bubble {
+  background:linear-gradient(135deg,#D4813A,#A85E22); border:1px solid rgba(212,129,58,0.2);
+  border-bottom-right-radius:5px; color:white;
+  box-shadow:0 4px 20px rgba(212,129,58,0.3),inset 0 1.5px 0 rgba(255,255,255,0.22);
+}
+.aichat-ts { font-size:.6rem; color:var(--muted); font-weight:600; padding:0 .2rem; opacity:.7; }
+.aichat-msg.user .aichat-ts { text-align:right; }
+
+/* ── Typing ── */
+.aichat-typing { display:flex; gap:.6rem; align-items:flex-end; animation:aiMsgIn .28s ease both; }
+.aichat-typing-bubble {
+  padding:.72rem .9rem; border-radius:16px; border-bottom-left-radius:5px;
+  background:rgba(255,255,255,0.90); border:1px solid rgba(255,255,255,0.97);
+  display:flex; gap:.4rem; align-items:center;
+  box-shadow:0 4px 14px rgba(212,129,58,0.07),inset 0 1px 0 rgba(255,255,255,1);
+}
+.aichat-typing-dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:aiTypeDot 1.4s ease-in-out infinite; }
+.aichat-typing-dot:nth-child(2){animation-delay:.2s}
+.aichat-typing-dot:nth-child(3){animation-delay:.4s}
+@keyframes aiTypeDot{0%,60%,100%{opacity:.35;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+/* ── Follow-up chips ── */
+.aichat-suggest-row { display:flex; flex-wrap:wrap; gap:.4rem; padding:.2rem 0; }
+.aichat-suggest-chip {
+  padding:.3rem .78rem; border-radius:99px; cursor:pointer;
+  font-size:.67rem; font-weight:700; font-family:'Sora',sans-serif;
+  background:rgba(255,255,255,0.78); border:1px solid rgba(255,255,255,0.94);
+  color:var(--green-dk); transition:all .2s ease;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.97),0 2px 5px rgba(212,129,58,0.06);
+}
+.aichat-suggest-chip:hover { background:var(--grad); color:white; border-color:transparent; box-shadow:0 4px 14px rgba(212,129,58,0.3); }
+
+/* ── Insight Strip ── */
+.aichat-insight-strip {
+  display:flex; gap:.6rem; padding:.6rem 1.2rem;
+  flex-shrink:0; position:relative; z-index:2;
+  border-top:1px solid rgba(255,255,255,0.6); border-bottom:1px solid rgba(255,255,255,0.6);
+  overflow-x:auto; scrollbar-width:none;
+  background:rgba(255,255,255,0.22);
+}
+.aichat-insight-strip::-webkit-scrollbar { display:none; }
+.aichat-insight-item {
+  display:flex; align-items:center; gap:.45rem; flex-shrink:0;
+  padding:.3rem .75rem; border-radius:99px;
+  background:rgba(255,255,255,0.72); border:1px solid rgba(255,255,255,0.92);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.97),0 2px 6px rgba(212,129,58,0.05);
+}
+.aichat-insight-item i { color:var(--green-dk); font-size:.65rem; }
+.aichat-insight-item span { font-size:.65rem; font-weight:700; color:var(--text2); white-space:nowrap; }
+
+/* ── Input Zone ── */
+.aichat-input-zone {
+  display:flex; gap:.55rem; align-items:flex-end;
+  padding:.85rem 1.2rem 1rem;
+  flex-shrink:0; position:relative; z-index:2;
+  background:rgba(255,255,255,0.28); border-top:1px solid rgba(255,255,255,0.62);
+}
+.aichat-input-field {
+  flex:1; padding:.7rem 1rem; border-radius:14px;
+  background:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.97);
+  color:var(--text); font-family:'Sora',sans-serif; font-size:.855rem;
+  outline:none; resize:none; max-height:100px; line-height:1.5; transition:all .2s ease;
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,1),0 2px 8px rgba(212,129,58,0.06);
+}
+.aichat-input-field::placeholder { color:var(--muted); }
+.aichat-input-field:focus {
+  border-color:rgba(212,129,58,0.32); background:rgba(255,255,255,0.97);
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,1),0 0 0 3px rgba(212,129,58,0.09);
+}
+.aichat-send-btn {
+  width:42px; height:42px; border-radius:13px; flex-shrink:0; border:none;
+  background:linear-gradient(135deg,#D4813A,#A85E22); color:white; font-size:.9rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 18px rgba(212,129,58,0.4),inset 0 1.5px 0 rgba(255,255,255,0.3);
+  transition:all .22s cubic-bezier(.34,1.3,.64,1);
+}
+.aichat-send-btn:hover { transform:scale(1.08) translateY(-2px); box-shadow:0 8px 26px rgba(212,129,58,0.55); }
+.aichat-send-btn:active { transform:scale(.94); }
+
+/* ── Brand strip ── */
+.aichat-brand-strip {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:.3rem 1.3rem .55rem;
+  font-size:.62rem; color:var(--muted); font-weight:600;
+  flex-shrink:0; position:relative; z-index:2; letter-spacing:.4px;
+  background:rgba(255,255,255,0.18);
+}
+.aichat-brand-strip a { color:var(--green-dk); font-weight:700; cursor:pointer; transition:color .2s; }
+.aichat-brand-strip a:hover { color:var(--green); }
+
+/* ── Float Chat Button — iOS 26 Light Glass ── */
+#floatChatBtn {
+  position:fixed; bottom:5.5rem; right:2rem; z-index:7999;
+  width:58px; height:58px; border-radius:20px; border:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(145deg,rgba(255,255,255,0.88) 0%,rgba(220,246,234,0.78) 50%,rgba(255,255,255,0.85) 100%);
+  backdrop-filter:blur(40px) saturate(300%);
+  -webkit-backdrop-filter:blur(40px) saturate(300%);
+  border:1px solid rgba(255,255,255,0.98);
+  box-shadow:inset 0 2.5px 0 rgba(255,255,255,1),inset 0 -1px 0 rgba(212,129,58,0.05),0 8px 32px rgba(212,129,58,0.22),0 2px 8px rgba(0,0,0,0.07),0 0 0 0.5px rgba(212,129,58,0.12);
+  transition:all .3s cubic-bezier(.34,1.3,.64,1);
+  overflow:visible;
+}
+#floatChatBtn:hover {
+  transform:scale(1.1) translateY(-3px);
+  box-shadow:inset 0 2.5px 0 rgba(255,255,255,1),0 16px 48px rgba(212,129,58,0.35),0 4px 14px rgba(0,0,0,0.08);
+  background:rgba(255,255,255,0.96);
+}
+.fcb-icon {
+  font-size:1.15rem; color:var(--green-dk);
+  filter:drop-shadow(0 0 4px rgba(212,129,58,0.5));
+  animation:aiAvatarPulse 3s ease-in-out infinite;
+  position:relative; z-index:2;
+}
+.fcb-ping {
+  position:absolute; top:-4px; right:-4px;
+  width:14px; height:14px; border-radius:50%;
+  background:#D4813A; border:2px solid rgba(255,255,255,0.97);
+  box-shadow:0 0 0 0 rgba(212,129,58,0.5);
+  animation:fcbRipple 2s ease-out infinite;
+}
+@keyframes fcbRipple { 0%{box-shadow:0 0 0 0 rgba(212,129,58,0.6)} 70%{box-shadow:0 0 0 10px rgba(212,129,58,0)} 100%{box-shadow:0 0 0 0 rgba(212,129,58,0)} }
+#chatUnreadBadge.show { background:linear-gradient(135deg,#f59e0b,#d97706); border-color:rgba(255,255,255,0.97); box-shadow:0 0 10px rgba(245,158,11,0.5); }
+
+@media(max-width:768px){
+  #aiChatOverlay { padding-bottom:1rem; padding-right:1rem; padding-left:1rem; align-items:flex-end; justify-content:center; }
+  #aiChatPanel { width:100%; max-width:100%; border-radius:24px 24px 18px 18px; height:clamp(520px,82vh,660px); }
+  #floatChatBtn { bottom:5rem; right:1.5rem; width:54px; height:54px; }
+}
+@media(max-width:480px){
+  #aiChatPanel { border-radius:20px 20px 14px 14px; }
+  #floatChatBtn { bottom:4.5rem; right:1rem; }
+}

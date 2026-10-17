@@ -1,0 +1,232 @@
+/* ══════════════════════════════════════════════════════════════
+   TAB BAR — dark pill navigation with an expanding active tab
+   ──────────────────────────────────────────────────────────────
+   • Inactive tab  → icon only (outline)
+   • Active tab    → white pill with filled icon + label
+   • ≥ 769px       → sits in the header, between logo and actions
+   • ≤ 768px       → floating dock at the bottom of the screen
+   Everything is driven by the variables below, so re-theming the
+   bar means changing a few values here.
+══════════════════════════════════════════════════════════════ */
+
+:root{
+  --tab-bar-bg:      #1a1b2e;
+  --tab-bar-ring:    rgba(255,255,255,.06);
+  --tab-icon:        #8c8ea8;
+  --tab-icon-hover:  #ffffff;
+  --tab-active-bg:   #ffffff;
+  --tab-active-fg:   #14152a;
+
+  --tab-size:        40px;   /* height of every tab + width of an inactive tab */
+  --tab-icon-size:   20px;
+  --tab-gap:         4px;
+  --tab-pad:         5px;    /* space between bar edge and tabs */
+  --tab-font:        13px;
+
+  --tab-ease:        cubic-bezier(.34,1.32,.64,1);   /* soft spring */
+  --dock-offset:     14px;   /* distance from bottom edge on mobile */
+}
+
+/* ── Bar ───────────────────────────────────────────────────── */
+.tabbar{
+  list-style:none;
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:var(--tab-gap);
+  padding:var(--tab-pad);
+  background:var(--tab-bar-bg);
+  border-radius:999px;
+  box-shadow:
+    0 12px 28px -6px rgba(21,10,2,.34),
+    0 3px 8px rgba(21,10,2,.16),
+    inset 0 0 0 1px var(--tab-bar-ring);
+  position:relative;
+}
+.tabbar > li{ display:flex; }
+
+/* ── Tab ───────────────────────────────────────────────────── */
+.tab{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 0fr;          /* label column collapsed */
+  align-items:center;
+  column-gap:0;
+  height:var(--tab-size);
+  min-width:var(--tab-size);
+  padding:0 calc((var(--tab-size) - var(--tab-icon-size)) / 2);
+  border-radius:999px;
+  color:var(--tab-icon);
+  font:600 var(--tab-font)/1 'Sora',system-ui,sans-serif;
+  letter-spacing:.1px;
+  white-space:nowrap;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:
+    grid-template-columns .46s var(--tab-ease),
+    column-gap           .46s var(--tab-ease),
+    padding              .46s var(--tab-ease),
+    background-color     .28s ease,
+    color                .28s ease,
+    transform            .18s ease;
+}
+
+/* Icon: outline by default, filled when active */
+.tab-icon{
+  width:var(--tab-icon-size);
+  height:var(--tab-icon-size);
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:fill .28s ease, transform .4s var(--tab-ease);
+}
+.tab-icon .o{ fill:none !important; }   /* parts that must stay outlined */
+
+/* Label: slides open inside the 1fr column */
+.tab-label{
+  min-width:0;
+  overflow:hidden;
+  opacity:0;
+  transform:translateX(-6px);
+  transition:opacity .22s ease, transform .46s var(--tab-ease);
+}
+
+/* ── Hover / press ─────────────────────────────────────────── */
+@media (hover:hover){
+  .tab:not(.nav-active):hover{
+    color:var(--tab-icon-hover);
+    background:rgba(255,255,255,.09);
+  }
+  .tab:not(.nav-active):hover .tab-icon{ transform:translateY(-1px) scale(1.08); }
+
+  /* Tooltip for icon-only tabs */
+  .tab::after{
+    content:attr(data-label);
+    position:absolute;
+    top:calc(100% + 14px);
+    left:50%;
+    transform:translate(-50%,-4px);
+    padding:.42rem .7rem;
+    border-radius:10px;
+    background:var(--tab-bar-bg);
+    color:#fff;
+    font:600 11.5px/1 'Sora',system-ui,sans-serif;
+    letter-spacing:.2px;
+    box-shadow:0 8px 20px rgba(21,10,2,.28);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease, transform .22s var(--tab-ease);
+    z-index:5;
+  }
+  .tab:not(.nav-active):hover::after{
+    opacity:1;
+    transform:translate(-50%,0);
+    transition-delay:.25s;
+  }
+}
+.tab:active{ transform:scale(.95); }
+
+/* ── Keyboard focus ────────────────────────────────────────── */
+.tab:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px var(--tab-bar-bg), 0 0 0 4px var(--green2,#E8A84E);
+}
+
+/* ── Active tab ────────────────────────────────────────────── */
+.tab.nav-active{
+  grid-template-columns:auto 1fr;          /* label column opens */
+  column-gap:8px;
+  padding:0 18px 0 13px;
+  background:var(--tab-active-bg);
+  color:var(--tab-active-fg);
+  cursor:default;
+}
+.tab.nav-active .tab-icon{ fill:currentColor; }
+.tab.nav-active .tab-icon .d{ stroke:var(--tab-active-bg); }   /* inner details cut through the fill */
+.tab.nav-active .tab-label{
+  opacity:1;
+  transform:none;
+  transition-delay:.05s;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER LAYOUT  (≥ 769px): logo | tab bar | actions
+══════════════════════════════════════════════════════════════ */
+@media (min-width:769px){
+  header nav{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    column-gap:1rem;
+    padding:.42rem .5rem .42rem 1.3rem;
+  }
+  header nav .logo{ justify-self:start; }
+  header nav .nav-actions{ justify-self:end; }
+}
+
+/* Progressively drop secondary header items on narrower screens */
+@media (max-width:1280px){ #navClock{ display:none; } }
+@media (max-width:1120px){ .nav-docs-btn{ display:none; } }
+@media (max-width:920px){  .nav-cta{ display:none; } }
+
+/* ══════════════════════════════════════════════════════════════
+   MOBILE DOCK  (≤ 768px): bar floats at the bottom of the screen
+══════════════════════════════════════════════════════════════ */
+@media (max-width:768px){
+  :root{
+    --tab-size:38px;
+    --tab-icon-size:19px;
+    --tab-gap:2px;
+    --tab-pad:5px;
+    --tab-font:12.5px;
+  }
+
+  /* A backdrop-filter / will-change on <nav> would make it the containing
+     block of the fixed dock, so the glass is flattened on mobile. */
+  header nav{
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+    will-change:auto;
+    background:linear-gradient(145deg,rgba(255,255,255,.96),rgba(252,240,222,.94));
+  }
+
+  .tabbar{
+    position:fixed;
+    left:50%;
+    bottom:calc(var(--dock-offset) + env(safe-area-inset-bottom, 0px));
+    transform:translateX(-50%);
+    z-index:1001;
+    width:max-content;                 /* without this a fixed box shrinks to its minimum width */
+    max-width:calc(100vw - 20px);
+    box-shadow:
+      0 18px 40px -10px rgba(15,16,40,.55),
+      0 4px 12px rgba(15,16,40,.28),
+      inset 0 0 0 1px var(--tab-bar-ring);
+  }
+  .tab::after{ display:none; }                    /* no tooltips on touch */
+  .tab.nav-active{ padding:0 15px 0 12px; column-gap:7px; }
+
+  /* Keep content and floating buttons clear of the dock */
+  footer{ padding-bottom:calc(5.75rem + env(safe-area-inset-bottom, 0px)); }
+  #backToTop{ bottom:calc(var(--dock-offset) + 62px + env(safe-area-inset-bottom, 0px)); }
+  #floatChatBtn{ bottom:calc(var(--dock-offset) + 124px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+
+/* Small phones: 6 tabs in the dock (the others live in the ☰ menu) */
+@media (max-width:520px){
+  :root{ --tab-size:36px; --tab-icon-size:18px; --tab-font:12px; }
+  .tabbar > li[data-dock="hide"]{ display:none; }
+  .tab.nav-active{ padding:0 13px 0 10px; column-gap:6px; }
+}
+@media (max-width:360px){
+  :root{ --tab-size:34px; --tab-icon-size:17px; --tab-font:11.5px; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  .tab, .tab-icon, .tab-label, .tab::after{ transition:none !important; }
+}

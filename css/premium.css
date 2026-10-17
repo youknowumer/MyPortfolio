@@ -1,0 +1,475 @@
+/* Premium v3 — command palette, tilt, badges, clock */
+
+/* ── 2. SCROLL PROGRESS LINE (top) ── */
+#scrollProgressLine {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #D4813A, #E8A84E, #F2CC8A, #E8A84E, #D4813A);
+  background-size: 200% 100%;
+  animation: progressFlow 2s linear infinite;
+  z-index: 9999;
+  box-shadow: 0 0 12px rgba(212,129,58,0.7), 0 0 28px rgba(212,129,58,0.3);
+  transition: width .1s linear;
+  border-radius: 0 2px 2px 0;
+}
+@keyframes progressFlow { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+/* ── 3. COMMAND PALETTE ── */
+#cmdOverlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(21, 10, 2, 0.45);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  z-index: 19998;
+}
+#cmdOverlay.vis { display: block; }
+
+#cmdPalette {
+  position: fixed;
+  top: 18vh; left: 50%; transform: translateX(-50%) translateY(-18px);
+  width: min(620px, calc(100vw - 2rem));
+  z-index: 19999;
+  background: linear-gradient(145deg, rgba(255,255,255,0.97) 0%, rgba(252,235,210,0.96) 100%);
+  backdrop-filter: blur(72px) saturate(320%) brightness(1.06);
+  -webkit-backdrop-filter: blur(72px) saturate(320%) brightness(1.06);
+  border: 1px solid rgba(255,255,255,0.99);
+  border-radius: 26px;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,1),
+    0 48px 120px rgba(212,129,58,0.22),
+    0 12px 40px rgba(0,0,0,0.12),
+    0 0 0 0.5px rgba(212,129,58,0.18);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .3s cubic-bezier(.34,1.4,.64,1);
+}
+#cmdPalette.vis {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+#cmdHeader {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  padding: 1.1rem 1.3rem;
+  border-bottom: 1px solid rgba(212,129,58,0.12);
+  background: rgba(255,255,255,0.3);
+}
+#cmdIcon {
+  color: var(--green-dk);
+  font-size: .95rem;
+  flex-shrink: 0;
+  opacity: .7;
+}
+#cmdInput {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  caret-color: var(--green);
+}
+#cmdInput::placeholder { color: var(--muted); font-weight: 500; }
+#cmdEsc {
+  background: rgba(212,129,58,0.08);
+  border: 1px solid rgba(212,129,58,0.18);
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .22rem .55rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  letter-spacing: .5px;
+}
+#cmdResults {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: .5rem .6rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212,129,58,0.2) transparent;
+}
+.cmd-result {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .72rem 1rem;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background .15s ease, transform .18s ease;
+  font-family: 'Sora', sans-serif;
+}
+.cmd-result:hover, .cmd-result.sel {
+  background: linear-gradient(135deg, rgba(212,129,58,0.09), rgba(232,168,78,0.06));
+}
+.cmd-result.sel { outline: 1.5px solid rgba(212,129,58,0.3); }
+.cmd-result-icon {
+  width: 36px; height: 36px; border-radius: 11px;
+  background: var(--grad);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: .85rem; flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(212,129,58,0.3);
+}
+.cmd-result-title {
+  font-size: .88rem; font-weight: 700; color: var(--text);
+  display: block; margin-bottom: .12rem;
+}
+.cmd-result-sub {
+  font-size: .72rem; color: var(--muted); font-weight: 500;
+}
+.cmd-result-badge {
+  margin-left: auto;
+  padding: .2rem .6rem;
+  background: rgba(212,129,58,0.08);
+  border: 1px solid rgba(212,129,58,0.16);
+  border-radius: 6px;
+  font-size: .64rem; font-weight: 700; color: var(--green-dk);
+  letter-spacing: .5px;
+  flex-shrink: 0;
+}
+.cmd-section-label {
+  font-size: .64rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--muted);
+  padding: .5rem 1rem .3rem;
+}
+#cmdFooter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem 1.2rem;
+  border-top: 1px solid rgba(212,129,58,0.10);
+  background: rgba(255,255,255,0.2);
+  font-size: .68rem; font-weight: 600; color: var(--muted);
+}
+#cmdFooter kbd {
+  background: rgba(212,129,58,0.08);
+  border: 1px solid rgba(212,129,58,0.18);
+  border-radius: 5px;
+  padding: .1rem .4rem;
+  font-size: .62rem;
+  font-family: 'Sora', sans-serif;
+  color: var(--text2);
+  margin-right: .2rem;
+}
+
+/* ── 5. MAGNETIC BUTTON EFFECT ── */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1) !important;
+}
+
+/* ── 6. ENHANCED CARD TILT ── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform .4s cubic-bezier(.34,1.2,.64,1), box-shadow .4s ease !important;
+}
+.tilt-card .tilt-shine {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0%, transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 10;
+}
+.tilt-card:hover .tilt-shine { opacity: 1; }
+
+/* ── 7. SPARKLE CURSOR TRAIL ── */
+.cursor-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99997;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: sparkleOut .7s ease forwards;
+}
+@keyframes sparkleOut {
+  0%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  100%{ opacity: 0; transform: translate(-50%,-70%) scale(0); }
+}
+
+/* ── 8. CONTACT SECTION — Interactive map pin + copy buttons ── */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .28rem .7rem;
+  background: rgba(212,129,58,0.08);
+  border: 1px solid rgba(212,129,58,0.18);
+  border-radius: 8px;
+  color: var(--green-dk);
+  font-size: .68rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+  font-family: 'Sora', sans-serif;
+  margin-left: .4rem;
+}
+.copy-btn:hover {
+  background: var(--grad);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(212,129,58,0.3);
+}
+.copy-btn.copied {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-color: transparent;
+}
+
+/* ── 9. LIVE CLOCK IN NAV ── */
+#navClock {
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: .5px;
+  padding: .3rem .65rem;
+  border-radius: 10px;
+  background: rgba(212,129,58,0.06);
+  border: 1px solid rgba(212,129,58,0.12);
+  font-family: 'Sora', sans-serif;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+#navClock i { color: var(--green); font-size: .6rem; }
+
+/* ── 10. SKILLS RADIAL RINGS — override on skill-pill hover ── */
+.skill-pill-icon {
+  position: relative;
+  overflow: visible !important;
+}
+.skill-ring-svg {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.skill-pill:hover .skill-ring-svg { opacity: 1; }
+.skill-ring-bg { fill: none; stroke: rgba(212,129,58,0.12); stroke-width: 2; }
+.skill-ring-fill {
+  fill: none;
+  stroke: url(#skillGradient);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 1s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── 11. INTERACTIVE HERO STATS — counter animation on hover ── */
+.hero-stat:hover .hero-stat-num {
+  animation: statBounce .4s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes statBounce {
+  0%  { transform: scale(1); }
+  50% { transform: scale(1.22); }
+  100%{ transform: scale(1); }
+}
+
+/* ── 12. ENHANCED SECTION TRANSITIONS ── */
+.reveal-v3 {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition: opacity .65s cubic-bezier(.16,1,.3,1), transform .65s cubic-bezier(.16,1,.3,1);
+}
+.reveal-v3.in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.reveal-v3-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+}
+.reveal-v3-left.in { opacity: 1; transform: translateX(0); }
+.reveal-v3-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+}
+.reveal-v3-right.in { opacity: 1; transform: translateX(0); }
+
+/* ── 13. TOOLTIP SYSTEM ── */
+[data-tip] { position: relative; }
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(21,10,2,0.88);
+  backdrop-filter: blur(12px);
+  color: white;
+  font-size: .65rem;
+  font-weight: 600;
+  font-family: 'Sora', sans-serif;
+  padding: .35rem .75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 9999;
+}
+[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── 15. ENHANCED MOBILE HAMBURGER ANIMATION ── */
+#mobBtn.is-open .fa-bars::before { content: '\f00d'; }
+.mob-menu-inner { transform-origin: top center; }
+.mob-menu.open .mob-menu-inner {
+  animation: menuPop .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+/* ── 16. SMOOTH TAB SWITCH (skills) with slide animation ── */
+.skills-panel {
+  transition: opacity .28s ease, transform .28s cubic-bezier(.34,1.2,.64,1);
+}
+.skills-panel:not(.active) {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.skills-panel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 17. INTERACTIVE PROJECT CARDS ── */
+.proj-card, .cert-card {
+  cursor: default;
+}
+.proj-card:hover .proj-card-icon i,
+.cert-card:hover .cert-icon i {
+  animation: iconSpin .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes iconSpin {
+  0%  { transform: rotate(0) scale(1); }
+  50% { transform: rotate(-12deg) scale(1.18); }
+  100%{ transform: rotate(0) scale(1); }
+}
+
+/* ── 18. AVAILABLE BADGE — enhanced pulse ── */
+.avail-badge {
+  position: relative;
+  overflow: visible;
+}
+.avail-badge::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: var(--grad);
+  opacity: 0;
+  animation: availGlow 2.5s ease-in-out infinite;
+  z-index: -1;
+  border-radius: 999px;
+  filter: blur(8px);
+}
+@keyframes availGlow {
+  0%,100% { opacity: 0; }
+  50%      { opacity: 0.3; }
+}
+
+/* ── 19. CONTACT ITEMS — enhanced interactions ── */
+.contact-item {
+  transition: transform .28s cubic-bezier(.34,1.56,.64,1), box-shadow .28s ease;
+}
+.contact-item:hover {
+  transform: translateX(8px) scale(1.01);
+  box-shadow: var(--sh-lg) !important;
+}
+
+/* ── 20. CMD OPEN BUTTON HINT in footer ── */
+.cmd-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .68rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+.cmd-hint kbd {
+  background: rgba(212,129,58,0.08);
+  border: 1px solid rgba(212,129,58,0.2);
+  border-radius: 5px;
+  padding: .1rem .4rem;
+  font-size: .62rem;
+  font-family: 'Sora', sans-serif;
+}
+
+/* ── 21. READING TIME BADGE on hero ── */
+#readTimeBar {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .28rem .85rem;
+  background: rgba(212,129,58,0.07);
+  border: 1px solid rgba(212,129,58,0.16);
+  border-radius: 999px;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: .8rem;
+  font-family: 'Sora', sans-serif;
+}
+#readTimeBar i { color: var(--green); font-size: .72rem; }
+
+/* ── 23. HERO STATS — interactive hover card ── */
+.hero-stat {
+  cursor: default;
+  padding: .5rem .8rem;
+  border-radius: 14px;
+  transition: background .22s ease, transform .28s cubic-bezier(.34,1.56,.64,1);
+}
+.hero-stat:hover {
+  background: rgba(212,129,58,0.07);
+  transform: translateY(-3px);
+}
+
+/* ── 24. SOCIAL LINK RIPPLE ── */
+.footer-social {
+  position: relative;
+  overflow: hidden;
+}
+.footer-social::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(212,129,58,0.3), transparent 70%);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform .4s ease, opacity .4s ease;
+}
+.footer-social:hover::after {
+  opacity: 1;
+  transform: scale(2.5);
+}
+
+/* ── 25. NAV — add contact link style ── */
+.nav-contact-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+  animation: pulse 2s infinite;
+  margin-left: .18rem;
+}
