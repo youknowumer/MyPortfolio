@@ -35,3 +35,15 @@
 .dl-ring .tr{stroke:rgba(255,255,255,.18)}.dl-ring .fg{stroke:#f2a867;stroke-dasharray:94.25;stroke-dashoffset:94.25;filter:drop-shadow(0 0 4px rgba(242,168,103,.7))}
 .dl-ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 .6rem/1 'Sora',system-ui,sans-serif;color:#fff;font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.sp-wrap .sp-dot{transition:none!important}}
+
+/* ── Same warm palette as the tab bar ── */
+.sp-wrap{background:linear-gradient(180deg,rgba(104,64,34,.78),rgba(52,30,15,.88))!important;
+  box-shadow:inset 0 1.5px 0 rgba(255,226,196,.5),inset 0 -1px 0 rgba(255,214,170,.14),inset 0 0 0 1px rgba(255,214,170,.16),0 22px 50px -14px rgba(60,28,8,.55),0 0 40px -10px rgba(242,168,103,.35)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(160%);backdrop-filter:blur(22px) saturate(160%)}
+.dl-lens{background:linear-gradient(180deg,rgba(255,196,138,.55),rgba(212,129,58,.34) 60%,rgba(184,100,38,.4))!important;
+  -webkit-backdrop-filter:blur(6px) saturate(150%)!important;backdrop-filter:blur(6px) saturate(150%)!important;
+  box-shadow:inset 0 1.5px 0 rgba(255,240,222,.8),inset 0 -1.5px 0 rgba(255,214,170,.25),inset 0 0 0 1px rgba(255,226,196,.4),0 8px 20px -6px rgba(60,28,8,.45),0 0 26px rgba(242,168,103,.4)!important}
+.sp-wrap .sp-dot{color:rgba(255,235,212,.74)}.sp-wrap .sp-dot.on,.sp-wrap .sp-dot:hover{color:#FFF4E6}
+.dl-n{color:rgba(255,226,196,.5)}.sp-dot.on .dl-n{color:#FFF4E6}
+.dl-ticks{background-image:repeating-linear-gradient(180deg,rgba(255,226,196,.55) 0 1.5px,transparent 1.5px 9px)}
+.dl-ring .tr{stroke:rgba(255,226,196,.22)}.dl-ring .fg{stroke:#FFE2C0}
