@@ -1,0 +1,34 @@
+/* iOS 26 glass + smoothness pass — load LAST */
+:root{--ios-spring:cubic-bezier(.32,.72,0,1);--ios-out:cubic-bezier(.22,1,.36,1);--ios-rim:rgba(255,255,255,.78)}
+
+/* Cards: layered iOS glass without per-card backdrop-filter (the main scroll-jank source) */
+.glass-card,.exp-card,.cert-card,.proj-card,.edu-card,.award-card,.about-highlight,.info-item,.faq-item,.u-card{
+  background:linear-gradient(150deg,rgba(255,255,255,.78) 0%,rgba(255,248,238,.56) 55%,rgba(255,255,255,.7) 100%)!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  border:1px solid var(--ios-rim)!important;border-radius:26px;
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.98),inset 0 -1px 0 rgba(212,129,58,.14),inset 1px 0 0 rgba(255,255,255,.6),0 1px 2px rgba(70,45,20,.06),0 18px 40px -18px rgba(120,80,40,.3)!important;
+  transition:transform .55s var(--ios-spring),box-shadow .55s var(--ios-out)!important;
+  transform:translateZ(0)}
+@media(hover:hover){
+  .exp-card:hover,.cert-card:hover,.proj-card:hover,.edu-card:hover,.award-card:hover{
+    transform:translate3d(0,-5px,0)!important;
+    box-shadow:inset 0 1.5px 0 #fff,inset 0 -1px 0 rgba(212,129,58,.2),0 2px 4px rgba(70,45,20,.06),0 28px 52px -20px rgba(120,80,40,.38)!important}}
+.glass-card:active,.exp-card:active,.cert-card:active,.proj-card:active{transform:scale(.985)!important;transition-duration:.18s!important}
+
+/* Only a few floating surfaces keep real blur (iOS-style: strong, saturated, but limited) */
+header nav,.tabbar,.mob-menu-inner{-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%)}
+.tabbar{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.4),0 10px 30px -10px rgba(80,50,20,.28)}
+
+/* Softer, springier reveal */
+.reveal,.reveal-left,.reveal-right{transition:opacity .8s var(--ios-out),transform .9s var(--ios-spring)!important;will-change:auto}
+.reveal:not(.visible):not(.in):not(.revealed){will-change:transform,opacity}
+
+/* Scroll progress on the compositor (transform, not width) */
+#readingProgress,.reading-progress{width:100%!important;transform-origin:0 50%;transform:scaleX(var(--p,0));transition:none!important}
+
+/* While scrolling: no hover repaints; offscreen / hidden tab: pause animations */
+body.is-scrolling .exp-card,body.is-scrolling .cert-card,body.is-scrolling .proj-card,body.is-scrolling .award-card,body.is-scrolling .edu-card{pointer-events:none}
+section.is-off *,section.is-off *::before,section.is-off *::after,body.tab-hidden *,body.tab-hidden *::before,body.tab-hidden *::after{animation-play-state:paused!important}
+img{-webkit-user-drag:none}
+html{scroll-padding-top:84px;-webkit-tap-highlight-color:transparent}
+@media(prefers-reduced-motion:reduce){.exp-card,.cert-card,.proj-card,.award-card{transition:none!important}}

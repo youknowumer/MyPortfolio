@@ -52,7 +52,7 @@
       if(backToTopBtn) backToTopBtn.classList.toggle('visible', sy>400);
 
       /* Reading progress */
-      if(readProg){ const bh=bodyH(); readProg.style.width=(bh>0?sy/bh*100:0)+'%'; }
+      if(readProg){ const bh=bodyH(); readProg.style.setProperty('--p',bh>0?sy/bh:0); }
 
       /* Parallax hero (only while in view) */
       if(heroLeft && sy < window.innerHeight){
