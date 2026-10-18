@@ -32,3 +32,42 @@ section.is-off *,section.is-off *::before,section.is-off *::after,body.tab-hidde
 img{-webkit-user-drag:none}
 html{scroll-padding-top:84px;-webkit-tap-highlight-color:transparent}
 @media(prefers-reduced-motion:reduce){.exp-card,.cert-card,.proj-card,.award-card{transition:none!important}}
+
+/* ── Text safety: no clipping / collisions ── */
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4{text-wrap:balance}p,li,.exp-ach-item span,.award-desc{text-wrap:pretty}
+.skill-pill-name,.exp-company,.exp-role,.award-title,.award-org,.exp-ach-item span,.proj-card *{overflow-wrap:break-word;min-width:0}
+.skill-pill{min-width:0}.skill-pill-info{min-width:0;display:flex;flex-direction:column;gap:.3rem}
+.skill-pill-name{margin-bottom:0!important;line-height:1.25}
+.skill-pill-info>:not(.skill-bar):not(.skill-pill-name){display:flex;flex-wrap:wrap;gap:.25rem;white-space:nowrap}
+.cert-stat,.extra-card,.award-spot,.skill-pill,.exp-impact>div,.exp-tag,.nav-cta,.nav-docs-btn{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+
+/* ── Mobile: give timeline cards real width ── */
+@media(max-width:640px){
+  .exp-item{gap:.6rem!important;margin-bottom:1.6rem!important}
+  .exp-marker{width:14px!important}
+  .exp-card{padding:1.15rem!important;min-width:0}
+  .exp-card-top,.exp-company-row{flex-direction:column;align-items:flex-start!important;gap:.6rem!important}
+  .exp-meta{align-items:flex-start!important;text-align:left!important;width:100%}
+  .exp-role,.exp-period{text-align:left!important}
+  .exp-ach-item{padding:.7rem .8rem!important;gap:.6rem!important}
+  .exp-ach-item span{font-size:.86rem;line-height:1.55}
+  .exp-impact{grid-template-columns:1fr 1fr!important}
+  .skill-pill{padding:.8rem!important;gap:.65rem!important}
+  .skill-pill-icon{width:36px!important;height:36px!important;font-size:1rem!important;border-radius:11px}
+  .skill-pill-name{font-size:.82rem!important}
+  .cert-stat,.extra-card{padding-inline:.9rem!important}
+}
+
+/* ── Detailing: iOS-style controls, focus, selection, scrollbar ── */
+::selection{background:rgba(212,129,58,.28)}
+:focus-visible{outline:2px solid rgba(212,129,58,.75);outline-offset:3px;border-radius:12px}
+.nav-cta,.nav-docs-btn,.exp-tag,.skill-pill,.cert-stat{transition:transform .4s var(--ios-spring),box-shadow .4s var(--ios-out),background .3s ease!important}
+.nav-cta:active,.nav-docs-btn:active,button:active{transform:scale(.95);transition-duration:.12s!important}
+.exp-tag,.exp-impact>div{background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(255,244,230,.6))!important;border:1px solid rgba(255,255,255,.8)!important;box-shadow:inset 0 1px 0 #fff,0 2px 8px -3px rgba(120,80,40,.2)}
+.skill-bar{background:rgba(212,129,58,.14)!important;box-shadow:inset 0 1px 2px rgba(120,80,40,.15)}
+.skill-bar-fill{transition:width 1.2s var(--ios-out)!important;box-shadow:0 0 10px rgba(212,129,58,.45)}
+.exp-dot{box-shadow:0 0 0 4px rgba(212,129,58,.16),0 0 0 9px rgba(212,129,58,.07),0 4px 10px rgba(212,129,58,.35)!important}
+@media(hover:hover){.skill-pill:hover,.cert-stat:hover,.extra-card:hover{transform:translate3d(0,-4px,0)!important}}
+@supports(scrollbar-width:thin){html{scrollbar-width:thin;scrollbar-color:rgba(212,129,58,.45) transparent}}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:rgba(212,129,58,.4);border-radius:9px;border:2px solid transparent;background-clip:content-box}
