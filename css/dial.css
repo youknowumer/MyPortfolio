@@ -47,3 +47,29 @@
 .dl-n{color:rgba(255,226,196,.5)}.sp-dot.on .dl-n{color:#FFF4E6}
 .dl-ticks{background-image:repeating-linear-gradient(180deg,rgba(255,226,196,.55) 0 1.5px,transparent 1.5px 9px)}
 .dl-ring .tr{stroke:rgba(255,226,196,.22)}.dl-ring .fg{stroke:#FFE2C0}
+
+/* ── Boxless dial: no panel, no lens box — items float on the page ── */
+.sp-wrap{background:none!important;box-shadow:none!important;border-radius:0!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;overflow:visible!important}
+.dl-lens{left:2px;right:auto;width:4px;height:30px;margin-top:-15px;border-radius:4px;
+  background:linear-gradient(180deg,#F2A867,#B8642A)!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  box-shadow:0 0 14px rgba(242,168,103,.85),0 0 4px rgba(212,129,58,.9)!important;border:0!important}
+.sp-wrap .sp-dot{color:rgba(91,52,19,.5)}
+.sp-wrap .sp-dot.on,.sp-wrap .sp-dot:hover{color:#4A2A10}
+.sp-wrap .sp-dot .sp-lbl{text-shadow:0 0 12px rgba(255,248,238,.95),0 0 3px rgba(255,248,238,.9)!important}
+.sp-wrap .sp-dot.on .sp-lbl{font-size:1.08rem!important;text-shadow:0 0 14px rgba(255,248,238,1),0 0 3px rgba(255,248,238,.95)!important}
+.dl-n{color:rgba(184,100,38,.6)}.sp-dot.on .dl-n{color:#D4813A}
+.dl-ticks{background-image:repeating-linear-gradient(180deg,rgba(184,100,38,.6) 0 1.5px,transparent 1.5px 9px)}
+.dl-ring .tr{stroke:rgba(184,100,38,.2)}.dl-ring .fg{stroke:#D4813A;filter:drop-shadow(0 0 4px rgba(242,168,103,.6))}
+.dl-ring b{color:#4A2A10;text-shadow:0 0 6px rgba(255,248,238,.9)}
+.sp-wrap{padding-right:0}
+
+/* ── Light ink when the dial sits over a dark section ── */
+.sp-wrap.dl-on-dark .sp-dot{color:rgba(255,236,214,.55)}
+.sp-wrap.dl-on-dark .sp-dot.on,.sp-wrap.dl-on-dark .sp-dot:hover{color:#FFF4E6}
+.sp-wrap.dl-on-dark .sp-dot .sp-lbl,.sp-wrap.dl-on-dark .sp-dot.on .sp-lbl{text-shadow:0 1px 10px rgba(0,0,0,.55)!important}
+.sp-wrap.dl-on-dark .dl-n{color:rgba(255,200,150,.65)}.sp-wrap.dl-on-dark .sp-dot.on .dl-n{color:#F2A867}
+.sp-wrap.dl-on-dark .dl-ticks{background-image:repeating-linear-gradient(180deg,rgba(255,214,170,.6) 0 1.5px,transparent 1.5px 9px)}
+.sp-wrap.dl-on-dark .dl-ring .tr{stroke:rgba(255,226,196,.25)}.sp-wrap.dl-on-dark .dl-ring .fg{stroke:#FFD9B0}
+.sp-wrap.dl-on-dark .dl-ring b{color:#FFF4E6;text-shadow:none}
+.sp-wrap .sp-dot,.sp-wrap .dl-n,.dl-ring b{transition:color .4s ease}
