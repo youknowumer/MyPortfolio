@@ -160,67 +160,71 @@
   });
 })();
 
-/* ── 4. CURSOR SPARKLE TRAIL ── */
-(function(){
-  const colors=['#D4813A','#E8A84E','#F2CC8A','#f59e0b','#D4813A'];
-  let lastSparkle=0;
-  document.addEventListener('mousemove',function(e){
-    const now=Date.now();
-    if(now-lastSparkle<55) return;
-    lastSparkle=now;
-    const s=document.createElement('div');
-    s.className='cursor-sparkle';
-    const size=3+Math.random()*5;
-    s.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX}px;top:${e.clientY}px;background:${colors[Math.floor(Math.random()*colors.length)]};opacity:.85;box-shadow:0 0 ${size*2}px ${colors[0]}`;
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),700);
-  });
-})();
+/* ── 4. CURSOR SPARKLE TRAIL — removed: js/effects.js already runs a pooled trail + canvas sparkles.
+      A third DOM-creating trail on every mousemove only added jank. ── */
 
-/* ── 5. MAGNETIC BUTTONS ── */
+/* ── 5. MAGNETIC BUTTONS — rAF-throttled; the spring return lives in CSS (.is-magnet) ── */
 (function(){
-  document.querySelectorAll('.btn-pri,.btn-sec,.nav-cta,.nav-ai-btn').forEach(btn=>{
-    btn.addEventListener('mousemove',function(e){
-      const r=this.getBoundingClientRect();
-      const x=e.clientX-r.left-r.width/2;
-      const y=e.clientY-r.top-r.height/2;
-      this.style.transform=`translate(${x*0.22}px,${y*0.22}px)`;
-    });
-    btn.addEventListener('mouseleave',function(){
-      this.style.transform='';
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  document.querySelectorAll('.btn-pri,.btn-sec,.nav-cta,.nav-ai-btn').forEach(function(btn){
+    var raf=0, tx=0, ty=0, r=null;
+    function paint(){ raf=0; btn.style.transform='translate3d('+tx+'px,'+ty+'px,0)'; }
+    btn.addEventListener('pointerenter',function(){ r=btn.getBoundingClientRect(); btn.classList.add('is-magnet'); });
+    btn.addEventListener('pointermove',function(e){
+      if(!r) r=btn.getBoundingClientRect();
+      tx=(e.clientX-r.left-r.width/2)*0.22;
+      ty=(e.clientY-r.top-r.height/2)*0.22;
+      if(!raf) raf=requestAnimationFrame(paint);
+    },{passive:true});
+    btn.addEventListener('pointerleave',function(){
+      r=null; btn.classList.remove('is-magnet'); btn.style.transform='';
     });
   });
 })();
 
-/* ── 6. ADVANCED 3D CARD TILT ── */
+/* ── 6. LIQUID CARD TILT + MOVING SPECULAR ──
+   One rAF-throttled handler per card. It only writes CSS variables (--mx --my --rx --ry);
+   all visuals (tilt, light, shadow) live in css/liquid-glass.css. No inline transform/box-shadow
+   strings, no duplicate handlers, no extra DOM nodes. ── */
 (function(){
-  function addTilt(selector){
-    document.querySelectorAll(selector).forEach(card=>{
-      card.classList.add('tilt-card');
-      if(!card.querySelector('.tilt-shine')){
-        const s=document.createElement('div');
-        s.className='tilt-shine';
-        card.appendChild(s);
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  var calm = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var TILT = '.cert-card,.edu-card,.proj-card,.award-card,.extra-card,.tool-card,.glass-card';
+  var LIGHT = '.exp-card,.about-highlight,.info-item,.skill-pill,.hero-floating-card,.cert-stat,.trait';
+  var epoch = 0;
+  window.addEventListener('scroll',function(){ epoch++; },{passive:true});
+
+  function bind(card, tilt){
+    var raf=0, px=.5, py=.5, rect=null, rectEpoch=-1;
+    if(tilt) card.classList.add('tilt-card');
+    function measure(){ rect=card.getBoundingClientRect(); rectEpoch=epoch; }
+    function paint(){
+      raf=0;
+      card.style.setProperty('--mx',(px*100).toFixed(1)+'%');
+      card.style.setProperty('--my',(py*100).toFixed(1)+'%');
+      if(tilt && !calm){
+        card.style.setProperty('--rx',((.5-py)*8).toFixed(2)+'deg');
+        card.style.setProperty('--ry',((px-.5)*8).toFixed(2)+'deg');
       }
-      card.addEventListener('mousemove',function(e){
-        const r=this.getBoundingClientRect();
-        const x=(e.clientX-r.left)/r.width - 0.5;
-        const y=(e.clientY-r.top)/r.height - 0.5;
-        const rx=-y*10; const ry=x*10;
-        this.style.transform=`perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.01)`;
-        this.style.boxShadow=`${ry*1.5}px ${-rx*1.5+20}px 60px rgba(212,129,58,0.22), 0 8px 32px rgba(0,0,0,0.08)`;
-        const shine=this.querySelector('.tilt-shine');
-        if(shine) shine.style.background=`radial-gradient(circle at ${(x+0.5)*100}% ${(y+0.5)*100}%, rgba(255,255,255,0.22) 0%, transparent 65%)`;
-      });
-      card.addEventListener('mouseleave',function(){
-        this.style.transform='';
-        this.style.boxShadow='';
-        const shine=this.querySelector('.tilt-shine');
-        if(shine) shine.style.background='';
-      });
+    }
+    card.addEventListener('pointerenter',function(){
+      measure(); card.classList.add('is-lit');
+      if(tilt && !calm) card.classList.add('is-tilting');
+    });
+    card.addEventListener('pointermove',function(e){
+      if(!rect || rectEpoch!==epoch) measure();
+      px=Math.min(1,Math.max(0,(e.clientX-rect.left)/rect.width));
+      py=Math.min(1,Math.max(0,(e.clientY-rect.top)/rect.height));
+      if(!raf) raf=requestAnimationFrame(paint);
+    },{passive:true});
+    card.addEventListener('pointerleave',function(){
+      rect=null; card.classList.remove('is-lit','is-tilting');
+      card.style.removeProperty('--rx'); card.style.removeProperty('--ry');
     });
   }
-  addTilt('.cert-card,.edu-card,.proj-card,.award-card,.extra-card,.tool-card,.glass-card');
+  document.querySelectorAll(TILT).forEach(function(c){ bind(c,true); });
+  document.querySelectorAll(LIGHT).forEach(function(c){ if(!c.matches(TILT)) bind(c,false); });
 })();
 
 /* ── 7. REVEAL v3 — smooth scroll entries with stagger ── */
@@ -236,17 +240,19 @@
 
   /* Apply staggered delays to grids */
   document.querySelectorAll('.cert-grid .cert-card,.proj-grid .proj-card,.skills-grid .skill-pill,.awards-grid .award-card,.extra-grid .extra-card,.tool-card').forEach((el,i)=>{
+    if(el.classList.contains('reveal')) return;   /* already handled by main.js reveal — avoid double animation */
     el.classList.add('reveal-v3');
     el.dataset.delay = (i%4)*80;
   });
 
   document.querySelectorAll('.exp-card,.edu-card,.hero-floating-card').forEach((el,i)=>{
+    if(el.classList.contains('reveal')) return;
     el.classList.add('reveal-v3');
     el.dataset.delay = i*100;
   });
 
-  document.querySelectorAll('.about-left,.hero-left').forEach(el=>el.classList.add('reveal-v3-left'));
-  document.querySelectorAll('.about-right,.hero-right').forEach(el=>el.classList.add('reveal-v3-right'));
+  document.querySelectorAll('.about-left,.hero-left').forEach(el=>{ if(!el.classList.contains('reveal')) el.classList.add('reveal-v3-left'); });
+  document.querySelectorAll('.about-right,.hero-right').forEach(el=>{ if(!el.classList.contains('reveal')) el.classList.add('reveal-v3-right'); });
 
   document.querySelectorAll('.reveal-v3,.reveal-v3-left,.reveal-v3-right').forEach(el=>obs.observe(el));
 })();

@@ -1,22 +1,31 @@
 /* Core interactions — cursor, scroll, menu, skills tabs, reveal, contact form, hero effects */
 
-/* ══════════ CURSOR — uses CSS transform (GPU composited, no layout) ══════════ */
+/* ══════════ CURSOR — GPU transform, runs only while the pointer is actually moving ══════════ */
 (function(){
   const cur = document.getElementById('cur');
   const curR = document.getElementById('cur-r');
   if(!cur || !curR) return;
-  /* Override inline positioning to use transform instead */
+  /* Touch / coarse pointers: no custom cursor, no per-frame loop at all */
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    cur.style.display = 'none'; curR.style.display = 'none';
+    document.body.style.cursor = 'auto';
+    return;
+  }
   cur.style.left = '0'; cur.style.top = '0';
   curR.style.left = '0'; curR.style.top = '0';
-  let mx=0,my=0,rx=0,ry=0,rafId;
-  document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; },{passive:true});
-  function animCur(){
-    cur.style.transform = `translate(${mx-5}px,${my-5}px)`;
-    rx += (mx-rx)*0.12; ry += (my-ry)*0.12;
-    curR.style.transform = `translate(${rx-20}px,${ry-20}px)`;
-    requestAnimationFrame(animCur);
+  cur.style.opacity = curR.style.opacity = '0';
+  let mx=0,my=0,rx=0,ry=0,raf=0,shown=false;
+  function frame(){
+    cur.style.transform = `translate3d(${mx-5}px,${my-5}px,0)`;
+    rx += (mx-rx)*0.2; ry += (my-ry)*0.2;
+    curR.style.transform = `translate3d(${rx-20}px,${ry-20}px,0)`;
+    raf = (Math.abs(mx-rx) > 0.1 || Math.abs(my-ry) > 0.1) ? requestAnimationFrame(frame) : 0;
   }
-  animCur();
+  document.addEventListener('mousemove',e=>{
+    mx = e.clientX; my = e.clientY;
+    if(!shown){ shown = true; rx = mx; ry = my; cur.style.opacity = curR.style.opacity = ''; }
+    if(!raf) raf = requestAnimationFrame(frame);
+  },{passive:true});
 })();
 
 /* ══════════ UNIFIED RAF-THROTTLED SCROLL HANDLER ══════════ */
@@ -87,7 +96,7 @@ setTimeout(animateBars,200);
 const revealObserver = new IntersectionObserver((entries)=>{
   entries.forEach((entry,i)=>{
     if(entry.isIntersecting){
-      setTimeout(()=>{entry.target.classList.add('visible')},i*70);
+      setTimeout(()=>{entry.target.classList.add('visible')},Math.min(i,7)*70);
       revealObserver.unobserve(entry.target);
     }
   });
@@ -189,20 +198,23 @@ if(tagline){
   setTimeout(typeRole,4200);
 }
 
-/* ══════════ AVATAR TILT ══════════ */
+/* ══════════ AVATAR TILT — rAF throttled, pointer devices only ══════════ */
 (function(){
   const avatar=document.querySelector('.hero-avatar-wrap');
-  if(!avatar)return;
+  if(!avatar || !window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   const bg=avatar.querySelector('.hero-avatar-bg');
-  avatar.addEventListener('mousemove',(e)=>{
-    const rect=avatar.getBoundingClientRect();
-    const x=e.clientX-rect.left, y=e.clientY-rect.top;
-    const cx=rect.width/2, cy=rect.height/2;
-    const rx=-(y-cy)/18, ry=(x-cx)/18;
-    if(bg)bg.style.transform=`perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`;
-  });
-  avatar.addEventListener('mouseleave',()=>{
-    if(bg)bg.style.transform='perspective(600px) rotateX(0) rotateY(0) scale(1)';
+  if(!bg) return;
+  let raf=0, rx=0, ry=0, rect=null;
+  function paint(){ raf=0; bg.style.transform=`perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.04)`; }
+  avatar.addEventListener('pointerenter',()=>{ rect=avatar.getBoundingClientRect(); });
+  avatar.addEventListener('pointermove',e=>{
+    if(!rect) rect=avatar.getBoundingClientRect();
+    rx=-(e.clientY-rect.top-rect.height/2)/18;
+    ry=(e.clientX-rect.left-rect.width/2)/18;
+    if(!raf) raf=requestAnimationFrame(paint);
+  },{passive:true});
+  avatar.addEventListener('pointerleave',()=>{
+    rect=null; bg.style.transform='perspective(600px) rotateX(0) rotateY(0) scale(1)';
   });
 })();
 
@@ -227,7 +239,11 @@ if(tagline){
     dots.forEach(d=>d.classList.toggle('on',d.dataset.t===active));
     wrap.classList.toggle('vis', sy>200);
   }
-  window.addEventListener('scroll',update,{passive:true});
+  let spTick=false;
+  window.addEventListener('scroll',()=>{
+    if(spTick) return; spTick=true;
+    requestAnimationFrame(()=>{ spTick=false; update(); });
+  },{passive:true});
   update();
 })();
 
@@ -252,16 +268,7 @@ if(tagline){
   document.querySelectorAll('.hero-stat-num,.cert-stat-num,.extra-num,.about-stat-mini .num').forEach(el=>obs.observe(el));
 })();
 
-/* ══════════ CARD TILT EFFECT ══════════ */
-document.querySelectorAll('.cert-card,.edu-card,.proj-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-0.5;
-    const y=(e.clientY-r.top)/r.height-0.5;
-    card.style.transform=`perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-6px)`;
-  });
-  card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
-});
+/* ══════════ CARD TILT — moved to js/premium.js (single rAF-driven handler; this one fought it) ══════════ */
 
 /* ══════════ SKILL BARS ON INTERSECT ══════════ */
 const bObs = new IntersectionObserver(entries=>{

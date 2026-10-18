@@ -31,7 +31,7 @@
   window.addEventListener('resize', resize, {passive:true});
 
   /* Pause when tab is hidden — saves CPU entirely */
-  document.addEventListener('visibilitychange',()=>{ paused = document.hidden; if(!paused) loop(); });
+  document.addEventListener('visibilitychange',()=>{ paused = document.hidden; if(!paused && !rafId) loop(); });
 
   const COLORS = ['rgba(212,129,58,','rgba(232,168,78,','rgba(242,204,138,','rgba(245,158,11,'];
 
@@ -54,9 +54,9 @@
   /* Reduced from 55 → 32 particles; group by colour to minimise fillStyle changes */
   for(let i=0;i<32;i++) sparks.push(new Spark());
 
-  let rafId;
+  let rafId = 0;
   function loop(){
-    if(paused) return;
+    if(paused){ rafId = 0; return; }
     ctx.clearRect(0,0,W,H);
     /* Batch draws by colour */
     const groups = {};
@@ -73,7 +73,7 @@
       groups[style].forEach(s=>{ ctx.moveTo(s.x,s.y); ctx.arc(s.x,s.y,s.r,0,Math.PI*2); });
       ctx.fill();
     });
-    requestAnimationFrame(loop);
+    rafId = requestAnimationFrame(loop);
   }
   loop();
 })();

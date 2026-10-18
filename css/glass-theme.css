@@ -201,8 +201,7 @@ nav {
 
 /* ── 13. Orb blur upgrades — more visible depth ── */
 .orb-bg {
-  filter: blur(110px);
-  opacity: 0.85;
+  opacity: 0.9;
   will-change: transform;
 }
 .orb-1 {
@@ -224,8 +223,7 @@ nav {
 /* ── 14. Additional micro glass orbs ── */
 .orb-5, .orb-6 {
   position: fixed; pointer-events: none; z-index: 0; border-radius: 50%;
-  filter: blur(80px); animation: orbDrift ease-in-out infinite alternate;
-  mix-blend-mode: multiply;
+  animation: orbDrift ease-in-out infinite alternate;
 }
 .orb-5 {
   width: 300px; height: 300px;
@@ -365,15 +363,7 @@ nav {
   box-shadow: inset 0 0 4px rgba(212,129,58,0.3);
 }
 
-/* ── 26. Glass refraction shimmer on section entry ── */
-@keyframes glassIn {
-  0%   { opacity:0; transform:translateY(24px) scale(0.98); filter:blur(4px); }
-  60%  { filter:blur(0); }
-  100% { opacity:1; transform:translateY(0) scale(1); filter:blur(0); }
-}
-.reveal.visible {
-  animation: glassIn 0.65s cubic-bezier(0.16,1,0.3,1) both;
-}
+/* ── 26. Section entry animation — moved to css/liquid-glass.css (lgReveal: no filter, no forwards-fill) ── */
 
 /* ── 28. Progress dots glass ── */
 .sp-dot .sp-lbl {
@@ -397,8 +387,4 @@ nav {
   transition-duration: .08s !important;
 }
 
-/* ── 30. Aurora background intensity boost ── */
-body::before {
-  animation: auroraShift 18s ease-in-out infinite alternate !important;
-  opacity: 0.9 !important;
-}
+/* ── 30. Aurora background — moved to css/liquid-glass.css ── */

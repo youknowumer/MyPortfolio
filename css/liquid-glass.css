@@ -1,0 +1,305 @@
+/* ══════════════════════════════════════════════════════════════════════
+   LIQUID GLASS — FINAL PASS  (load this file LAST)
+   ──────────────────────────────────────────────────────────────────────
+   What this file does
+   1. One shared glass recipe (tokens below) instead of 10 competing ones.
+      Blur 12–24px / saturate ≤190%  →  crisp, true-to-palette glass.
+      (The old 40–72px blur + 260–380% saturate over-boosted colours,
+       which tinted anything behind the glass and cost heavy GPU time.)
+   2. Layered edge light: top specular, warm bottom bounce, side rims,
+      plus a soft light that FOLLOWS THE POINTER (set by js/premium.js).
+   3. One easing language for every motion (expo-out + soft spring).
+   4. Reveal animation that no longer freezes hover / tilt afterwards.
+   5. Reduced-motion, no-backdrop-filter and mobile fallbacks.
+══════════════════════════════════════════════════════════════════════ */
+
+@property --spec { syntax:'<number>'; inherits:false; initial-value:0; }
+
+:root {
+  color-scheme: light;
+
+  --lg-ease:    cubic-bezier(.22, 1, .36, 1);      /* expo-out: fast start, silky settle */
+  --lg-spring:  cubic-bezier(.34, 1.45, .64, 1);   /* gentle overshoot for press / pop   */
+
+  --lg-blur:    20px;
+  --lg-blur-sm: 12px;
+  --lg-sat:     175%;
+
+  --lg-fill: linear-gradient(145deg,
+      rgba(255,255,255,.80) 0%,
+      rgba(253,240,220,.58) 48%,
+      rgba(255,255,255,.70) 100%);
+
+  --lg-light: radial-gradient(280px circle at var(--mx,50%) var(--my,0%),
+      rgba(255,252,246,calc(var(--spec) * .62)), transparent 66%);
+
+  --lg-edge:
+      inset 0 1px 0 rgba(255,255,255,.96),
+      inset 0 -1px 0 rgba(212,129,58,.10),
+      inset 1px 0 0 rgba(255,255,255,.55),
+      inset -1px 0 0 rgba(255,255,255,.35);
+
+  --lg-shadow:
+      0 1px 2px rgba(74,46,16,.06),
+      0 12px 32px -10px rgba(212,129,58,.22),
+      0 30px 60px -28px rgba(74,46,16,.20);
+
+  --lg-shadow-hi:
+      0 2px 4px rgba(74,46,16,.07),
+      0 22px 48px -12px rgba(212,129,58,.32),
+      0 44px 90px -30px rgba(74,46,16,.28);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+::selection { background: rgba(212,129,58,.28); }
+:focus-visible { outline: 2px solid rgba(212,129,58,.75); outline-offset: 3px; }
+.tab:focus-visible, .cf-input:focus-visible, .cf-textarea:focus-visible,
+.form-input:focus-visible, .form-textarea:focus-visible, #cmdInput:focus-visible { outline: none; }
+
+/* ── 1. CARD SURFACES ────────────────────────────────────────────────── */
+.glass-card,
+.exp-card,
+.cert-card,
+.proj-card,
+.edu-card,
+.about-highlight,
+.tool-card,
+.extra-card,
+.cert-stat,
+.featured-proj,
+.about-photo-frame {
+  background: var(--lg-light), var(--lg-fill);
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat));
+          backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat));
+  border: 1px solid rgba(255,255,255,.78);
+  box-shadow: var(--lg-edge), var(--lg-shadow);
+  transition:
+    opacity .8s var(--lg-ease),
+    --spec .6s var(--lg-ease),
+    transform .7s var(--lg-ease),
+    box-shadow .7s var(--lg-ease),
+    border-color .4s ease;
+}
+.glass-card:hover,
+.exp-card:hover,
+.cert-card:hover,
+.proj-card:hover,
+.edu-card:hover,
+.about-highlight:hover,
+.tool-card:hover,
+.extra-card:hover,
+.cert-stat:hover,
+.featured-proj:hover,
+.about-photo-frame:hover {
+  background: var(--lg-light), var(--lg-fill);
+  box-shadow: var(--lg-edge), var(--lg-shadow-hi);
+  border-color: rgba(255,255,255,.95);
+}
+
+/* small glass: pills, traits, floating hero cards */
+.skill-pill,
+.trait,
+.hero-floating-card {
+  background: var(--lg-light), var(--lg-fill);
+  -webkit-backdrop-filter: blur(var(--lg-blur-sm)) saturate(165%);
+          backdrop-filter: blur(var(--lg-blur-sm)) saturate(165%);
+  border: 1px solid rgba(255,255,255,.80);
+  box-shadow: var(--lg-edge), 0 1px 2px rgba(74,46,16,.05), 0 8px 22px -8px rgba(212,129,58,.20);
+  transition:
+    opacity .8s var(--lg-ease),
+    --spec .5s var(--lg-ease),
+    transform .55s var(--lg-spring),
+    box-shadow .45s var(--lg-ease);
+}
+.skill-pill:hover,
+.trait:hover,
+.hero-floating-card:hover {
+  background: var(--lg-light), var(--lg-fill);
+  box-shadow: var(--lg-edge), 0 2px 4px rgba(74,46,16,.06), 0 16px 34px -10px rgba(212,129,58,.32) !important;
+}
+
+/* these two carry !important backgrounds in glass-theme.css */
+.info-item, .doc-preview-card {
+  background: var(--lg-light), var(--lg-fill) !important;
+  -webkit-backdrop-filter: blur(var(--lg-blur-sm)) saturate(165%) !important;
+          backdrop-filter: blur(var(--lg-blur-sm)) saturate(165%) !important;
+  transition: --spec .5s var(--lg-ease), transform .55s var(--lg-spring), box-shadow .45s var(--lg-ease);
+}
+.doc-preview-card { -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat)) !important; backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-sat)) !important; }
+
+.skills-section {
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+          backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+}
+
+/* lit state — set by js/premium.js while the pointer is over a card */
+.is-lit { --spec: 1; }
+
+/* ── 2. TILT (driven by --rx / --ry from JS; no inline transform strings) ── */
+.tilt-card.is-tilting {
+  transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translate3d(0,-6px,0) scale(1.012);
+  transition:
+    opacity .8s var(--lg-ease),
+    --spec .5s var(--lg-ease),
+    transform .14s linear,
+    box-shadow .5s var(--lg-ease);
+}
+
+/* ── 3. DARK SECTIONS (Awards / Contact): warm-tinted glass, no white shimmer box ── */
+.award-card {
+  background:
+    radial-gradient(260px circle at var(--mx,50%) var(--my,0%), rgba(255,214,160,calc(var(--spec) * .17)), transparent 64%),
+    linear-gradient(145deg, rgba(255,255,255,.10), rgba(255,255,255,.035));
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+          backdrop-filter: blur(14px) saturate(150%);
+  border: 1px solid rgba(255,226,186,.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255,236,208,.30),
+    inset 0 -1px 0 rgba(0,0,0,.25),
+    0 22px 50px -20px rgba(0,0,0,.62);
+  transition: opacity .8s var(--lg-ease), --spec .6s var(--lg-ease), transform .7s var(--lg-ease), box-shadow .7s var(--lg-ease), border-color .4s ease;
+}
+.award-card:hover {
+  background:
+    radial-gradient(260px circle at var(--mx,50%) var(--my,0%), rgba(255,214,160,calc(var(--spec) * .17)), transparent 64%),
+    linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.05));
+  border-color: rgba(255,214,160,.30);
+  box-shadow:
+    inset 0 1px 0 rgba(255,236,208,.42),
+    0 30px 70px -22px rgba(0,0,0,.72),
+    0 0 0 1px rgba(232,168,78,.16);
+}
+/* the title shimmer is a white box, not clipped to the text — on dark it shows as a moving rectangle */
+.awards-section .sec-title::after,
+.contact-section .sec-title::after { display: none; }
+
+/* ── 4. NAV (desktop only — mobile keeps its flat bar so the fixed dock stays anchored) ── */
+header { will-change: auto; }
+@media (min-width: 769px) {
+  header nav {
+    -webkit-backdrop-filter: blur(24px) saturate(185%) brightness(1.04);
+            backdrop-filter: blur(24px) saturate(185%) brightness(1.04);
+    will-change: auto;
+    transition:
+      background .5s var(--lg-ease),
+      box-shadow .5s var(--lg-ease),
+      border-radius .5s var(--lg-ease),
+      border-color .4s ease;
+  }
+}
+.logo-inner { -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* tab bar: soft top light + liquid "pop" when a tab becomes active */
+.tabbar::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,232,200,.18);
+  background: linear-gradient(180deg, rgba(255,226,190,.08), rgba(255,226,190,0) 52%);
+}
+.tab.nav-active { animation: lgPop .6s var(--lg-spring); }
+@keyframes lgPop {
+  0%   { transform: scale(.90, 1.08); }
+  50%  { transform: scale(1.05, .97); }
+  100% { transform: scale(1); }
+}
+
+/* ── 5. OTHER GLASS SURFACES — sane blur, hidden ones cost nothing ── */
+.hero-avatar-bg {
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+          backdrop-filter: blur(26px) saturate(180%);
+  transition: transform .6s var(--lg-ease);
+}
+.hero-avatar-wrap:hover .hero-avatar-bg { transition: transform .14s linear; }
+
+.wbox { -webkit-backdrop-filter: blur(32px) saturate(190%); backdrop-filter: blur(32px) saturate(190%); }
+#aiChatPanel { -webkit-backdrop-filter: blur(34px) saturate(185%) !important; backdrop-filter: blur(34px) saturate(185%) !important; }
+#floatChatBtn { -webkit-backdrop-filter: blur(20px) saturate(180%) !important; backdrop-filter: blur(20px) saturate(180%) !important; }
+.cf-input, .cf-textarea { -webkit-backdrop-filter: blur(10px) saturate(160%) !important; backdrop-filter: blur(10px) saturate(160%) !important; }
+
+.mob-menu-inner, #pdfViewerModal {
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+          backdrop-filter: blur(28px) saturate(180%) !important;
+}
+
+#cmdPalette { -webkit-backdrop-filter: none; backdrop-filter: none; }
+#cmdPalette.vis { -webkit-backdrop-filter: blur(34px) saturate(185%); backdrop-filter: blur(34px) saturate(185%); }
+
+.sp-dot .sp-lbl { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+.sp-dot:hover .sp-lbl { -webkit-backdrop-filter: blur(16px) saturate(170%) !important; backdrop-filter: blur(16px) saturate(170%) !important; }
+
+/* anything still invisible (waiting to be revealed) must not run a backdrop blur */
+.reveal:not(.visible),
+.reveal-v3:not(.in), .reveal-v3-left:not(.in), .reveal-v3-right:not(.in) {
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+
+/* ── 6. BACKGROUND ATMOSPHERE — compositor-only, no hue shifting ── */
+.orb-bg, .orb-5, .orb-6 { filter: none; mix-blend-mode: normal; }
+body::before { animation: lgAurora 16s ease-in-out infinite alternate; will-change: opacity; }
+@keyframes lgAurora { from { opacity: .85; } to { opacity: 1; } }
+
+/* ── 7. REVEAL ────────────────────────────────────────────────────────
+   Old version animated `filter: blur()` and kept `fill-mode: both`, which
+   (a) froze transform so :hover / tilt never worked after the reveal and
+   (b) left blur(0) on every card forever. `backwards` hands control back. */
+@keyframes lgReveal {
+  from { opacity: 0; transform: translate3d(0,22px,0) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal.visible { animation: lgReveal .8s var(--lg-ease) backwards; }
+
+/* ── 8. BUTTONS ── */
+.btn-pri, .btn-sec, .nav-cta {
+  transition: transform .55s var(--lg-spring), box-shadow .4s var(--lg-ease), background .3s ease, color .3s ease;
+}
+.btn-pri.is-magnet, .btn-sec.is-magnet, .nav-cta.is-magnet, .nav-ai-btn.is-magnet {
+  transition: transform .12s linear, box-shadow .4s var(--lg-ease), background .3s ease, color .3s ease;
+}
+
+/* ── 9. MOBILE: lighter glass, fewer background layers ── */
+@media (max-width: 768px) {
+  :root { --lg-blur: 14px; --lg-blur-sm: 9px; --lg-sat: 165%; }
+  .orb-3, .orb-4, .orb-5, .orb-6 { display: none; }
+  #sparkleCanvas { opacity: .35; }
+}
+
+/* ── 10. NO backdrop-filter support → solid warm glass, never see-through mess ── */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass-card,
+.exp-card,
+.cert-card,
+.proj-card,
+.edu-card,
+.about-highlight,
+.tool-card,
+.extra-card,
+.cert-stat,
+.featured-proj,
+.about-photo-frame,
+.skill-pill,
+.trait,
+.hero-floating-card,
+.info-item,
+.doc-preview-card {
+    background: rgba(255,249,240,.96) !important;
+  }
+  header nav { background: rgba(255,249,240,.96); }
+}
+
+/* ── 11. REDUCED MOTION — respect the OS setting ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    transition-delay: 0s !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-v3, .reveal-v3-left, .reveal-v3-right { opacity: 1 !important; transform: none !important; }
+  #sparkleCanvas, .particles, .orb-bg, .orb-5, .orb-6 { display: none !important; }
+}

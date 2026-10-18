@@ -10,12 +10,12 @@
 ══════════════════════════════════════════════════════════════ */
 
 :root{
-  --tab-bar-bg:      #1a1b2e;
+  --tab-bar-bg:      #2A170B;
   --tab-bar-ring:    rgba(255,255,255,.06);
-  --tab-icon:        #8c8ea8;
+  --tab-icon:        #BFA183;
   --tab-icon-hover:  #ffffff;
   --tab-active-bg:   #ffffff;
-  --tab-active-fg:   #14152a;
+  --tab-active-fg:   #2A170B;
 
   --tab-size:        40px;   /* height of every tab + width of an inactive tab */
   --tab-icon-size:   20px;
@@ -203,8 +203,8 @@
     width:max-content;                 /* without this a fixed box shrinks to its minimum width */
     max-width:calc(100vw - 20px);
     box-shadow:
-      0 18px 40px -10px rgba(15,16,40,.55),
-      0 4px 12px rgba(15,16,40,.28),
+      0 18px 40px -10px rgba(21,10,2,.55),
+      0 4px 12px rgba(21,10,2,.28),
       inset 0 0 0 1px var(--tab-bar-ring);
   }
   .tab::after{ display:none; }                    /* no tooltips on touch */

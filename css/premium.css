@@ -160,29 +160,7 @@
   margin-right: .2rem;
 }
 
-/* ── 5. MAGNETIC BUTTON EFFECT ── */
-.btn-magnetic {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  transition: transform .2s cubic-bezier(.34,1.56,.64,1) !important;
-}
-
-/* ── 6. ENHANCED CARD TILT ── */
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform .4s cubic-bezier(.34,1.2,.64,1), box-shadow .4s ease !important;
-}
-.tilt-card .tilt-shine {
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.18) 0%, transparent 65%);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .3s ease;
-  z-index: 10;
-}
-.tilt-card:hover .tilt-shine { opacity: 1; }
+/* ── 5/6. MAGNETIC BUTTON + CARD TILT — styles moved to css/liquid-glass.css ── */
 
 /* ── 7. SPARKLE CURSOR TRAIL ── */
 .cursor-sparkle {
