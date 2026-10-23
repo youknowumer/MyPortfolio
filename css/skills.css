@@ -1,0 +1,39 @@
+/* Skills & Expertise v2 — redesigned boxes + core-stack strip */
+#skills .sk-core{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 2rem;margin:0 auto 1.6rem;padding:1rem 1.3rem;border-radius:20px;background:linear-gradient(135deg,rgba(212,129,58,.14),rgba(255,255,255,.55));border:1px solid rgba(212,129,58,.28);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
+#skills .sk-core-l small{display:block;font:700 .68rem Sora,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#A85E22}
+#skills .sk-core-l strong{font:700 .95rem Sora,sans-serif;color:#1A1008}
+#skills .sk-core-c{display:flex;flex-wrap:wrap;gap:.5rem}
+#skills .sk-chip{display:inline-flex;align-items:center;gap:.5rem;padding:.42rem .8rem;border-radius:999px;background:#fff;border:1px solid rgba(212,129,58,.3);font:600 .8rem Sora,sans-serif;color:#1A1008;box-shadow:0 2px 8px rgba(168,94,34,.08)}
+#skills .sk-chip i{font-style:normal;font-weight:800;color:#D4813A}
+#skills .sk-n{font-style:normal;margin-left:.45rem;padding:.05rem .45rem;border-radius:999px;background:rgba(212,129,58,.16);font-size:.68rem;font-weight:800}
+#skills .skills-tab.active .sk-n{background:rgba(255,255,255,.3)}
+
+#skills .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1rem}
+#skills .sk-card{position:relative;display:flex;flex-direction:column;gap:.85rem;padding:1.15rem 1.15rem 1rem;border-radius:22px;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,248,238,.55));border:1px solid rgba(212,129,58,.22);
+  box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 26px rgba(168,94,34,.08);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;opacity:1}
+#skills .sk-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--c1,#D4813A),var(--c2,#E8A84E));opacity:.85}
+#skills .sk-card:hover{transform:translateY(-4px);border-color:rgba(212,129,58,.5);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 18px 38px rgba(168,94,34,.16)}
+#skills .sk-card[data-lv=x]{--c1:#A85E22;--c2:#E8A84E}
+#skills .sk-card[data-lv=a]{--c1:#D4813A;--c2:#F2CC8A}
+#skills .sk-card[data-lv=p]{--c1:#8A6840;--c2:#D9BE96}
+#skills .sk-card[data-lv=f]{--c1:#9aa0a6;--c2:#d4d7da}
+#skills .sk-top{display:flex;align-items:center;justify-content:space-between}
+#skills .sk-card .skill-pill-icon{width:44px;height:44px;border-radius:14px;flex:none;display:grid;place-items:center;font-size:1.15rem;margin:0}
+#skills .sk-lvl{font:800 .64rem Sora,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .65rem;border-radius:999px;color:#A85E22;background:rgba(212,129,58,.12);border:1px solid rgba(212,129,58,.25)}
+#skills .sk-card[data-lv=x] .sk-lvl{color:#fff;background:linear-gradient(135deg,#D4813A,#A85E22);border-color:transparent}
+#skills .sk-card .skill-pill-info{display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:.5rem .6rem;width:100%;margin:0}
+#skills .sk-card .skill-pill-name{font:700 .98rem Sora,sans-serif;color:#1A1008}
+#skills .sk-card .skill-pct{display:inline-flex;align-items:baseline;gap:1px;font:800 .8rem Sora,sans-serif;color:#A85E22;margin:0}
+#skills .sk-card .skill-pct b{font-size:1.25rem}
+#skills .sk-card .skill-bar{grid-column:1/-1;height:7px;border-radius:99px;background:rgba(212,129,58,.14);overflow:hidden}
+#skills .sk-card .skill-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--c1),var(--c2))}
+#skills .sk-ev{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;min-height:1.5rem;padding-top:.7rem;border-top:1px dashed rgba(212,129,58,.28)}
+#skills .sk-ev:empty{display:none}
+#skills .sk-ev small{font:700 .62rem Sora,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8A6840;margin-right:.1rem}
+#skills .sk-ev span{font:600 .7rem Sora,sans-serif;padding:.2rem .55rem;border-radius:8px;background:rgba(212,129,58,.1);color:#6b4a22;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#skills .sk-ev .more{background:transparent;border:1px solid rgba(212,129,58,.3)}
+@keyframes skIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+#skills .skills-panel.active .sk-card{animation:skIn .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*45ms)}
+@media(max-width:560px){#skills .skills-grid{grid-template-columns:1fr 1fr;gap:.7rem}#skills .sk-card{padding:.9rem}#skills .sk-ev{display:none}#skills .sk-core{padding:.9rem}}
+@media(prefers-reduced-motion:reduce){#skills .sk-card,#skills .skills-panel.active .sk-card{animation:none;transition:none}}
