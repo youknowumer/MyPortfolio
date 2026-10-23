@@ -68,12 +68,12 @@ const docFiles = {
   cl: { file: 'assets/docs/Muhammad_Umer_Faheem_Cover_Letter.pdf', title: 'Cover Letter — BIS Position' }
 };
 
-function switchDoc(type){
+function switchDoc(type, ev){
   document.querySelectorAll('.doc-panel').forEach(p => { p.style.display = 'none'; p.classList.remove('active'); });
   document.querySelectorAll('.docs-tab').forEach(t => t.classList.remove('active'));
   const panel = document.getElementById('docPanel-' + type);
   if(panel){ panel.style.display = 'block'; panel.classList.add('active'); }
-  event.currentTarget.classList.add('active');
+  (ev || window.event || {currentTarget:null}).currentTarget?.classList.add('active');
 }
 
 function openDocPreview(type){
@@ -88,7 +88,7 @@ function openDocPreview(type){
   iframe.src = doc.file;
 
   if(title) title.textContent = doc.title;
-  if(dlBtn){ dlBtn.href = doc.file; dlBtn.download = (type==='cv'?'Muhammad_Umer_Faheem_CV.pdf':'assets/docs/Muhammad_Umer_Faheem_Cover_Letter.pdf'); }
+  if(dlBtn){ dlBtn.href = doc.file; dlBtn.download = doc.file.split('/').pop(); }
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }

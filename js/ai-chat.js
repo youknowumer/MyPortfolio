@@ -280,7 +280,7 @@ function clearChatHistory(){
     msgs.innerHTML = '';
     addMessage(`🔄 Conversation cleared! I'm ready for your next question about Umer — ask anything, from his skills and projects to why he's the right hire.`, 'bot');
   }
-  showToast('Conversation reset', 'info');
+  App.toast('Conversation reset');
 }
 
 /* ══════════ CHAT: CHIP QUICK-SEND ══════════ */
@@ -302,7 +302,7 @@ function createMsgEl(text, type){
 
   const bubble = document.createElement('div');
   bubble.className = 'aichat-bubble';
-  bubble.innerHTML = text;
+  bubble.innerHTML = type === 'user' ? App.esc(text) : text;
 
   const ts = document.createElement('div');
   ts.className = 'aichat-ts';
@@ -604,25 +604,24 @@ He is open to:<br><br>
 
 /* ── Keyword matching engine ── */
 function getAnswer(query) {
-  const q = query.toLowerCase().trim();
-
-  // Score each topic
-  let bestTopic = null;
-  let bestScore = 0;
-
+  const q = query.toLowerCase().replace(/[^\p{L}\p{N}\s+#.]/gu, ' ').replace(/\s+/g, ' ').trim();
+  const words = new Set(q.split(' '));
+  let bestTopic = null, bestScore = 0;
   for (const [topic, data] of Object.entries(UMER_KB)) {
     let score = 0;
     for (const key of data.keys) {
-      if (q.includes(key)) {
-        score += key.split(' ').length; // longer matches score higher
-      }
+      const k = key.toLowerCase();
+      /* short keys must match a whole word (stops "hr" matching "three"); phrases may match as substrings */
+      const hit = k.includes(' ') || k.length > 4 ? q.includes(k) : words.has(k);
+      if (hit) score += k.split(' ').length * (k.length > 4 ? 1.5 : 1);
     }
-    if (score > bestScore) {
-      bestScore = score;
-      bestTopic = topic;
-    }
+    if (score > bestScore) { bestScore = score; bestTopic = topic; }
   }
 
+  if (/how (many|long)|total|numbers?|stats?|at a glance/.test(q) && window.App && App.stats) {
+    const st = App.stats();
+    return `📊 <strong>At a glance</strong><br><br>💼 <strong>${st.roles}</strong> roles · ${Math.floor(st.totalMonths/12)} yr ${st.totalMonths%12} mo hands-on experience<br>🏅 <strong>${st.certs}</strong> certifications from <strong>${st.providers}</strong> providers<br>⚡ <strong>${st.skills}</strong> tracked skills · average proficiency <strong>${st.avgSkill}%</strong><br>⭐ Strongest: ${st.topSkills.map(App.esc).join(', ')}`;
+  }
   if (bestTopic && bestScore > 0) {
     return UMER_KB[bestTopic].answer;
   }

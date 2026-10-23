@@ -1,0 +1,3 @@
+{ "name": "myportfolio", "private": true, "type": "module",
+  "scripts": { "data": "python3 scripts/extract-data.py", "validate": "node scripts/validate.mjs",
+               "check": "for f in js/*.js; do node --check \"$f\" || exit 1; done && node scripts/validate.mjs" } }

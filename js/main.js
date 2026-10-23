@@ -75,11 +75,11 @@ document.getElementById('mobBtn').addEventListener('click',()=>{
 function closeMob(){document.getElementById('mobMenu').classList.remove('open')}
 
 /* ══════════ SKILLS TABS ══════════ */
-function showTab(id){
+function showTab(id, ev){
   document.querySelectorAll('.skills-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.skills-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
-  event.target.classList.add('active');
+  const src=(ev||window.event); if(src&&src.target) (src.target.closest('.skills-tab')||src.target).classList.add('active');
   animateBars();
 }
 
@@ -119,6 +119,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* ══════════ CONTACT FORM ══════════ */
 function showToast(msg, type){
+  if(window.App && App.toast) return App.toast(msg, type);
   const wrap = document.getElementById('toastWrap');
   if(!wrap) return;
   const t = document.createElement('div');

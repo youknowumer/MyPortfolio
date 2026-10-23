@@ -84,10 +84,10 @@
     { icon:'fa-house',    title:'Home',            sub:'Jump to the top',                    action:()=>scrollTo({top:0,behavior:'smooth'}), badge:'Section' },
     { icon:'fa-user',     title:'About Me',        sub:'Learn who Umer is',                  action:()=>scrollSection('about'),              badge:'Section' },
     { icon:'fa-code',     title:'Skills',          sub:'Technical arsenal & expertise',       action:()=>scrollSection('skills'),             badge:'Section' },
-    { icon:'fa-briefcase',title:'Experience',      sub:'3 internships & work history',        action:()=>scrollSection('experience'),         badge:'Section' },
+    { icon:'fa-briefcase',title:'Experience',      sub:(window.App&&App.stats?App.stats().roles:4)+' roles · internships & current ERP position',        action:()=>scrollSection('experience'),         badge:'Section' },
     { icon:'fa-graduation-cap',title:'Education',  sub:'UMT BBIS final year',                 action:()=>scrollSection('education'),          badge:'Section' },
     { icon:'fa-rocket',   title:'Projects',        sub:'5 key projects incl. ICAISAI capstone',action:()=>scrollSection('projects'),          badge:'Section' },
-    { icon:'fa-certificate',title:'Certifications',sub:'10+ from Google, IBM, Microsoft…',    action:()=>scrollSection('certifications'),     badge:'Section' },
+    { icon:'fa-certificate',title:'Certifications',sub:(window.App&&App.stats?App.stats().certs+' certificates · '+App.stats().providers+' providers':'Google, IBM, Microsoft…'),    action:()=>scrollSection('certifications'),     badge:'Section' },
     { icon:'fa-trophy',   title:'Awards',          sub:'Recognition & achievements',          action:()=>scrollSection('awards'),             badge:'Section' },
     { icon:'fa-file-alt', title:'Documents',       sub:'Preview & download CV / Cover Letter',action:()=>scrollSection('docs'),              badge:'Section' },
     { icon:'fa-envelope', title:'Contact',         sub:'Get in touch with Umer',              action:()=>scrollSection('contact'),            badge:'Section' },
@@ -312,7 +312,7 @@
       }
     });
     document.querySelectorAll('.skills-tab').forEach(t=>t.classList.remove('active'));
-    event.target.closest('.skills-tab').classList.add('active');
+    const _e=window.event; if(_e&&_e.target&&_e.target.closest) _e.target.closest('.skills-tab')?.classList.add('active');
     setTimeout(()=>{
       const panel=document.getElementById('tab-'+id);
       if(panel){ panel.classList.add('active'); panel.style.opacity='0'; panel.style.transform='translateY(12px)';
