@@ -9,7 +9,7 @@
 #skills .skills-tab.active .sk-n{background:rgba(255,255,255,.3)}
 
 #skills .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1rem}
-#skills .sk-card{position:relative;display:flex;flex-direction:column;gap:.85rem;padding:1.15rem 1.15rem 1rem;border-radius:22px;overflow:hidden;
+#skills .sk-card{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:.85rem;padding:1.15rem 1.15rem 1rem;border-radius:22px;overflow:hidden;
   background:linear-gradient(160deg,rgba(255,255,255,.78),rgba(255,248,238,.55));border:1px solid rgba(212,129,58,.22);
   box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 26px rgba(168,94,34,.08);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;opacity:1}
 #skills .sk-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--c1,#D4813A),var(--c2,#E8A84E));opacity:.85}

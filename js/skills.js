@@ -30,11 +30,11 @@ App.register('skills-v2', () => {
     grid.innerHTML = list.slice().sort((a, b) => b.score - a.score).map((s, i) => {
       const [L, k] = lvl(s.score), ic = icons[s.name] || {h: '<i class="fas fa-star"></i>', s: ''}, ev = [...new Set(used(s.name))];
       return `<article class="skill-pill sk-card" data-lv="${k}" style="--i:${i}">
-        <header class="sk-top"><div class="skill-pill-icon" style="${App.esc(ic.s)}">${ic.h}</div><span class="sk-lvl">${L}</span></header>
+        <div class="sk-top"><div class="skill-pill-icon" style="${App.esc(ic.s)}">${ic.h}</div><span class="sk-lvl">${L}</span></div>
         <div class="skill-pill-info"><span class="skill-pill-name">${App.esc(s.name)}</span>
           <span class="skill-pct"><b>${s.score}</b>%</span>
           <div class="skill-bar"><div class="skill-bar-fill" data-w="${s.score}"></div></div></div>
-        <footer class="sk-ev">${ev.length ? '<small>Used in</small>' + ev.slice(0, 2).map(e => '<span>' + App.esc(e) + '</span>').join('') + (ev.length > 2 ? '<span class="more">+' + (ev.length - 2) + '</span>' : '') : ''}</footer>
+        <div class="sk-ev">${ev.length ? '<small>Used in</small>' + ev.slice(0, 2).map(e => '<span>' + App.esc(e) + '</span>').join('') + (ev.length > 2 ? '<span class="more">+' + (ev.length - 2) + '</span>' : '') : ''}</div>
       </article>`;
     }).join('');
   });
