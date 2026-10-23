@@ -1,0 +1,34 @@
+/* Edge blur — iOS-style progressive blur at the top and bottom of the viewport.
+   Five stacked backdrop layers with graduated masks give a smooth falloff instead of a hard band.
+   Strength reacts to scroll velocity (js/edge-blur.js); both edges slide away at the start / end of the page.
+   NOTE: never put opacity / filter / mask on .edge-blur itself — that would turn it into a backdrop root and kill the blur. */
+:root{--eb-top:calc(112px + env(safe-area-inset-top,0px));--eb-bot:calc(96px + env(safe-area-inset-bottom,0px));--eb-tint:255,248,238}
+@media(max-width:768px){:root{--eb-top:calc(76px + env(safe-area-inset-top,0px));--eb-bot:calc(150px + env(safe-area-inset-bottom,0px))}}
+.edge-blur{position:fixed;left:0;right:0;z-index:400;pointer-events:none;user-select:none;will-change:transform;--k:0;--bst:0}
+.edge-top{top:0;height:var(--eb-top);transform-origin:50% 0;transform:translate3d(0,calc((1 - var(--k)) * -100%),0) scaleY(calc(1 + var(--bst) * .4))}
+.edge-bottom{bottom:0;height:var(--eb-bot);transform-origin:50% 100%;transform:translate3d(0,calc((1 - var(--k)) * 100%),0) scaleY(calc(1 + var(--bst) * .4))}
+.edge-blur i{position:absolute;inset:0;display:block}
+.edge-blur b{position:absolute;inset:0;display:block}
+.edge-top b{background:linear-gradient(to bottom,rgba(var(--eb-tint),calc(.5 + var(--bst) * .2)),rgba(var(--eb-tint),.18) 45%,transparent)}
+.edge-bottom b{background:linear-gradient(to top,rgba(var(--eb-tint),calc(.5 + var(--bst) * .2)),rgba(var(--eb-tint),.18) 45%,transparent)}
+.edge-top i:nth-child(1){-webkit-backdrop-filter:blur(0.6px) saturate(1.08);backdrop-filter:blur(0.6px) saturate(1.08);-webkit-mask-image:linear-gradient(to bottom,#000 44%,transparent 100%);mask-image:linear-gradient(to bottom,#000 44%,transparent 100%)}
+.edge-top i:nth-child(2){-webkit-backdrop-filter:blur(1.5px) saturate(1.08);backdrop-filter:blur(1.5px) saturate(1.08);-webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent 78%);mask-image:linear-gradient(to bottom,#000 30%,transparent 78%)}
+.edge-top i:nth-child(3){-webkit-backdrop-filter:blur(3.5px) saturate(1.08);backdrop-filter:blur(3.5px) saturate(1.08);-webkit-mask-image:linear-gradient(to bottom,#000 18%,transparent 62%);mask-image:linear-gradient(to bottom,#000 18%,transparent 62%)}
+.edge-top i:nth-child(4){-webkit-backdrop-filter:blur(7px) saturate(1.08);backdrop-filter:blur(7px) saturate(1.08);-webkit-mask-image:linear-gradient(to bottom,#000 8%,transparent 48%);mask-image:linear-gradient(to bottom,#000 8%,transparent 48%)}
+.edge-top i:nth-child(5){-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);-webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 36%);mask-image:linear-gradient(to bottom,#000 0%,transparent 36%)}
+.edge-bottom i:nth-child(1){-webkit-backdrop-filter:blur(0.6px) saturate(1.08);backdrop-filter:blur(0.6px) saturate(1.08);-webkit-mask-image:linear-gradient(to top,#000 44%,transparent 100%);mask-image:linear-gradient(to top,#000 44%,transparent 100%)}
+.edge-bottom i:nth-child(2){-webkit-backdrop-filter:blur(1.5px) saturate(1.08);backdrop-filter:blur(1.5px) saturate(1.08);-webkit-mask-image:linear-gradient(to top,#000 30%,transparent 78%);mask-image:linear-gradient(to top,#000 30%,transparent 78%)}
+.edge-bottom i:nth-child(3){-webkit-backdrop-filter:blur(3.5px) saturate(1.08);backdrop-filter:blur(3.5px) saturate(1.08);-webkit-mask-image:linear-gradient(to top,#000 18%,transparent 62%);mask-image:linear-gradient(to top,#000 18%,transparent 62%)}
+.edge-bottom i:nth-child(4){-webkit-backdrop-filter:blur(7px) saturate(1.08);backdrop-filter:blur(7px) saturate(1.08);-webkit-mask-image:linear-gradient(to top,#000 8%,transparent 48%);mask-image:linear-gradient(to top,#000 8%,transparent 48%)}
+.edge-bottom i:nth-child(5){-webkit-backdrop-filter:blur(14px) saturate(1.08);backdrop-filter:blur(14px) saturate(1.08);-webkit-mask-image:linear-gradient(to top,#000 0%,transparent 36%);mask-image:linear-gradient(to top,#000 0%,transparent 36%)}
+
+/* Headings un-blur as they scroll into view (text-only blocks, so no glass card loses its backdrop) */
+.sec-head.reveal,.u-block-head.reveal{filter:blur(10px);transition:opacity .7s ease,transform .7s cubic-bezier(.34,1.2,.64,1),filter .9s ease}
+.sec-head.reveal.visible,.u-block-head.reveal.visible{filter:none}
+.hero-left{will-change:transform,opacity,filter}
+
+/* Fallbacks */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.edge-blur i{display:none}.edge-top b{background:linear-gradient(to bottom,rgba(var(--eb-tint),.85),transparent)}.edge-bottom b{background:linear-gradient(to top,rgba(var(--eb-tint),.85),transparent)}}
+@media(prefers-reduced-transparency:reduce){.edge-blur i{display:none}}
+@media(prefers-reduced-motion:reduce){.sec-head.reveal,.u-block-head.reveal{filter:none}.edge-blur{transition:none}}
+@media print{.edge-blur{display:none!important}}
