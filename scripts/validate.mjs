@@ -9,7 +9,7 @@ const D = ctx.window.PORTFOLIO, errs = [];
 const ok = (c, m) => { if (!c) errs.push(m); };
 const count = re => (html.match(re) || []).length;
 
-ok(D.experience.length === count(/class="exp-card"/g), 'experience count differs from index.html');
+ok(D.experience.length === count(/class="xp-panel[ "]/g), 'experience count differs from index.html');
 ok(D.certifications.length === count(/class="cert-card[ "]/g), 'certification count differs from index.html');
 D.experience.forEach(e => {
   ok(e.company && e.role, `experience missing company/role: ${JSON.stringify(e.company)}`);
@@ -23,6 +23,8 @@ D.certifications.forEach(c => {
   ok(/^\d{4}-\d{2}$/.test(c.issued || ''), `cert "${c.name}" has no parseable date`);
   ok(['tech', 'design', 'erp', 'mgmt'].includes(c.category), `cert "${c.name}" has unknown category`);
 });
+ok(D.awards.length === count(/class="[^"]*\bhon-item\b/g), 'award count differs from index.html');
+D.awards.forEach(a => ok(a.title && a.org && ['honour', 'leadership', 'credential'].includes(a.tier), `award "${a.title}" is missing title, org or a valid tier`));
 Object.entries(D.skills).forEach(([d, list]) => list.forEach(s => ok(s.score > 0 && s.score <= 100, `skill ${d}/${s.name} score out of range`)));
 for (const f of html.match(/(?:src|href)="(?!https?:|#|mailto:|tel:|data:)[^"]+"/g) || []) {
   const p = f.replace(/^(src|href)="/, '').replace(/["#?].*$/, '');

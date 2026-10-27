@@ -13,15 +13,15 @@ def iso(s):
     return f"{m.group(2)}-{MONTHS[m.group(1).lower()]:02d}" if m else None
 
 experience = []
-for c in soup.select('#experience .exp-card'):
-    period = q(c, '.exp-period')
+for c in soup.select('#experience .xp-panel'):
+    period = q(c, '.xp-period')
     parts = [p.strip() for p in re.split(r'[–-]', period, maxsplit=1)]
     experience.append({
-        'company': q(c, '.exp-company'), 'mode': q(c, '.exp-type'), 'role': q(c, '.exp-role'),
+        'company': q(c, '.xp-company'), 'mode': q(c, '.xp-mode'), 'role': q(c, '.xp-role'),
         'period': period, 'start': iso(parts[0]), 'end': iso(parts[1]) if len(parts) > 1 else None,
         'current': 'present' in period.lower(),
-        'highlights': [T(a) for a in c.select('.exp-ach-item')],
-        'stack': [T(t) for t in c.select('.exp-tag')]})
+        'highlights': [T(a) for a in c.select('.xp-did-item')],
+        'stack': [re.sub(r'\s*\d+%$', '', T(t)) for t in c.select('.xp-tool')]})
 
 certs = []
 for c in soup.select('#certifications .cert-card'):
@@ -29,8 +29,9 @@ for c in soup.select('#certifications .cert-card'):
     certs.append({'name': q(c, '.cert-name'), 'provider': q(c, '.cert-provider'), 'issued': iso(d),
                   'issuedLabel': d, 'category': c.get('data-cat'), 'verified': bool(c.select_one('.cert-badge-v'))})
 
-awards = [{'title': q(a, '.award-title'), 'org': q(a, '.award-org'), 'summary': q(a, '.award-desc')}
-          for a in soup.select('#awards .award-card')]
+awards = [{'title': q(a, '.hon-title'), 'org': q(a, '.hon-org'), 'summary': q(a, '.hon-desc'),
+           'tier': a.get('data-tier'), 'date': q(a, '.hon-date') or None}
+          for a in soup.select('#awards .hon-item')]
 
 skills = {}
 for p in soup.select('.skills-panel'):

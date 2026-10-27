@@ -73,7 +73,7 @@
       sameAs: [p.linkedin, p.github],
       knowsAbout: App.stats().topSkills.concat(Object.values(D().skills || {}).flat().map(s => s.name)).filter((v, i, a) => a.indexOf(v) === i),
       alumniOf: {'@type': 'CollegeOrUniversity', name: 'University of Management and Technology, Lahore'},
-      award: (D().awards || []).map(a => a.title).filter(Boolean)
+      award: (D().awards || []).filter(a => !a.tier || a.tier === 'honour').map(a => a.title).filter(Boolean)
     };
     if (exp) ld.worksFor = {'@type': 'Organization', name: exp.company};
     const s = document.createElement('script'); s.type = 'application/ld+json'; s.id = 'ld-person';

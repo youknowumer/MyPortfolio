@@ -138,20 +138,28 @@ CERTIFICATIONS (10+ Verified Credentials)
 
 AWARDS & RECOGNITION
 ─────────────────────
-🥇 ICAISAI'26 Exhibition Selectee
-   Selected as one of only 3 projects from the entire BBIS batch for exhibition at ICAISAI'26 (International Conference on Artificial Intelligence, Sustainability, and Intelligent Applications) hosted at HSM, UMT. Evaluated by a professional DevOps & Cloud expert from Nex Skill. This is the highest form of academic recognition in his department.
+Honours
+🥇 ICAISAI'26 Exhibition Selectee (2026)
+   Selected as one of only 3 projects from the entire BBIS batch for exhibition at ICAISAI'26 (International Conference on Artificial Intelligence, Sustainability, and Intelligent Applications) hosted at HSM, UMT. Evaluated by a professional DevOps & Cloud expert from Nex Skill.
 
-🏅 Formally Recognized Intern — Tara Technologies Pvt. Ltd.
-   Received formal recognition from the company for outstanding performance — extraordinary for a first-year university student.
+🏆 Best ERP Innovative Idea (18 June 2026)
+   Awarded in the E-Business category at the HSM Project Exhibition, Dr Hasan Murad School of Management, UMT, for Artisan Aura Creations — Odoo, Shopify, Power BI, Microsoft Clarity and Meta Business Suite in one ecosystem.
 
-🎓 Cambridge International Qualification — Uni Athena, UK
-   Internationally recognized credential in Power BI/Data Analysis — attesting to global academic standards.
+🥉 Top 3 ERP Projects (January 2026)
+   Placed among the top three ERP projects at UMT.
 
-📜 Multi-Platform Certified Professional
-   Certifications from Google, Microsoft, IBM, SAP, Coursera, Simplilearn — 6 globally trusted platforms.
+🏅 Formally Recognized Intern — Tara Technologies Pvt. Ltd. (Jul – Sep 2023)
+   Received formal recognition from the company for UI/UX design and frontend development on live client projects.
 
-👑 Capstone Project Lead — Artisan Aura Creations
-   Led the team and owned the full ERP implementation from planning to exhibition presentation.
+Leadership and service
+👑 Capstone Project Lead — Artisan Aura Creations (UMT)
+   Led the implementation of the Odoo ERP system from planning to exhibition presentation.
+👥 Team Leader — Design & Tech Projects (UMT Academic Projects)
+🤝 CSR Volunteer — Event Coordination (Hum Mashal-e-Rah Foundation · UMT)
+   Coordinated attendance, registration and accessible seating at the Disability Day awareness seminar and solidarity walk.
+
+Credentials
+📜 Multi-Platform Certified — Google, Microsoft, IBM, SAP, Coursera, Simplilearn, including Power BI through Uni Athena (Cambridge, UK).
 
 PERSONALITY, STRENGTHS & VALUES
 ──────────────────────────────────
@@ -429,18 +437,17 @@ Platforms: <strong>Google · Microsoft · IBM · SAP · Coursera · Simplilearn 
   },
 
   awards: {
-    keys: ['award','achievement','recognition','icaisai','honor','prize','recognised','recognized','excellence','won','selected','top'],
-    answer: `Umer's achievements speak louder than any resume bullet point:<br><br>
-<strong>🥇 ICAISAI'26 Exhibition Selectee</strong><br>
-Selected as one of <strong>only 3 projects out of the entire BBIS batch</strong> for exhibition at ICAISAI'26 (International Conference on AI, Sustainability & Intelligent Applications) at HSM, UMT. His Artisan Aura Creations ERP project was evaluated by a professional <strong>DevOps & Cloud expert from Nex Skill</strong>. This is the highest academic recognition in his department.<br><br>
-<strong>🏅 Formally Recognized Intern — Tara Technologies Pvt. Ltd.</strong><br>
-Received an official company recognition for outstanding performance during his frontend internship — exceptional for a first-year university student.<br><br>
-<strong>🎓 Cambridge International Qualification — Uni Athena, UK</strong><br>
-Internationally recognized credential attesting to global academic standards in data analysis and BI.<br><br>
-<strong>📜 Multi-Platform Certified Professional</strong><br>
-Credentials from Google, Microsoft, IBM, SAP, Coursera, Simplilearn — 6 globally trusted organizations.<br><br>
-<strong>👑 Capstone Project Lead — Artisan Aura Creations</strong><br>
-Led the full team and owned the entire ERP implementation from planning through live exhibition.`
+    keys: ['award','achievement','recognition','icaisai','honor','prize','recognised','recognized','excellence','won','selected','top','best erp'],
+    answer: `Umer's recognition falls into three groups:<br><br>
+<strong>Honours</strong><br>
+<strong>🥇 ICAISAI'26 Exhibition Selectee (2026)</strong> — one of <strong>only 3 projects out of the entire BBIS batch</strong> exhibited at HSM, UMT, and evaluated by a <strong>DevOps & Cloud expert from Nex Skill</strong>.<br>
+<strong>🏆 Best ERP Innovative Idea (18 June 2026)</strong> — E-Business category at the HSM Project Exhibition, for Artisan Aura Creations (Odoo, Shopify, Power BI, Microsoft Clarity and Meta Business Suite in one ecosystem).<br>
+<strong>🥉 Top 3 ERP Projects (January 2026)</strong> — placed among the top three ERP projects at UMT.<br>
+<strong>🏅 Recognised Intern (Jul – Sep 2023)</strong> — formally recognised by Tara Technologies for UI/UX and frontend work on live client projects.<br><br>
+<strong>Leadership and service</strong><br>
+Capstone Project Lead, Team Leader on UMT design and tech projects, and CSR Volunteer for the Disability Day seminar with Hum Mashal-e-Rah Foundation.<br><br>
+<strong>Credentials</strong><br>
+Certified through Google, Microsoft, IBM, SAP, Coursera and Simplilearn, including Power BI through Uni Athena (Cambridge, UK).`
   },
 
   education: {

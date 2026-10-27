@@ -122,17 +122,17 @@ Displays technical abilities including:
 - Business intelligence knowledge
 - Data-related tools
 
-## 🧭 Experience Timeline
+## 🧭 Experience
 
-A structured view of:
-
-- Professional experience
-- Learning journey
-- Development milestones
+A role rail (newest first) with one detail panel at a time: period, time in role, setting, what I did and the tools used, with current skill scores shown next to matching tools. Arrow keys, Home and End move between roles. Without JavaScript every role is shown stacked.
 
 ## 🎓 Education Section
 
-Highlights academic background and achievements.
+A credential card for the BBIS degree (semester progress included), a ledger linking each area studied to the project or role where it was applied, and a short strip for the school before UMT.
+
+## 🏆 Awards & Recognition
+
+Grouped by weight: formal honours first (ICAISAI'26 selection, Best ERP Innovative Idea, Top 3 ERP Projects, Recognised Intern), then leadership and service, then credentials. Each entry carries a `data-tier` (`honour`, `leadership` or `credential`) that feeds `js/data.js`.
 
 ## 💼 Projects Showcase
 
@@ -168,6 +168,9 @@ MyPortfolio/
 │   ├── sparkles.css
 │   ├── glass-theme.css     # final glass pass
 │   ├── premium.css         # command palette, tilt, clock, …
+│   ├── experience.css      # experience rail + panels
+│   ├── education.css       # academic credential, ledger, prior school
+│   ├── awards.css          # honours, leadership, credentials
 │   └── tabbar.css          # ★ tab bar (desktop header + mobile dock)
 ├── js/
 │   ├── main.js             # cursor, scroll, menu, skills tabs, reveal, contact form
@@ -176,6 +179,7 @@ MyPortfolio/
 │   ├── effects.js          # hero stars + sparkle canvas
 │   ├── radar-chart.js      # skills radar (canvas)
 │   ├── premium.js          # command palette (Ctrl/⌘+K), tilt, shortcuts
+│   ├── experience.js       # experience role tabs + live durations
 │   └── tabbar.js           # ★ active-tab logic
 └── assets/
     ├── images/             # Logo.png, profile.jpg
@@ -183,6 +187,8 @@ MyPortfolio/
 ```
 
 Stylesheets and scripts load in the order listed in `index.html` – keep that order.
+
+After editing roles or awards in `index.html`, run `npm run data` then `npm run check` to regenerate `js/data.js` and validate it.
 
 ## Tab bar
 
