@@ -1,0 +1,85 @@
+/* About — upgraded layout. Scoped to #about; colour, glass and radius tokens come from base.css */
+
+#about .ab-card{background:var(--g1);backdrop-filter:var(--g-blur-sm);-webkit-backdrop-filter:var(--g-blur-sm);border:1px solid rgba(255,255,255,.75);border-radius:var(--r-lg);box-shadow:var(--sh)}
+
+/* Intro: profile card + story */
+#about .ab-intro{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3rem;align-items:start}
+#about .ab-profile{padding:1rem 1rem 1.4rem}
+#about .ab-photo{position:relative;aspect-ratio:4/5;border-radius:calc(var(--r-lg) - 8px);overflow:hidden;background:var(--bg2)}
+#about .ab-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+#about .ab-status{position:absolute;left:.8rem;bottom:.8rem;display:inline-flex;align-items:center;gap:.55rem;padding:.4rem .9rem;border-radius:var(--r-full);font-size:.78rem;font-weight:600;color:var(--text);background:var(--g1);backdrop-filter:var(--g-blur-sm);-webkit-backdrop-filter:var(--g-blur-sm)}
+#about .ab-status i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
+#about .ab-id{padding:1.1rem .6rem .3rem}
+#about .ab-id h3{font-family:'Playfair Display',serif;font-size:1.65rem;line-height:1.2;color:var(--text)}
+#about .ab-id p{color:var(--green-dk);font-weight:600;font-size:.9rem}
+#about .ab-facts{margin:.9rem .6rem 1.2rem}
+#about .ab-facts div{display:flex;justify-content:space-between;gap:1rem;padding:.62rem 0;border-top:1px solid var(--border);font-size:.85rem}
+#about .ab-facts dt{color:var(--muted);flex-shrink:0}
+#about .ab-facts dd{color:var(--text);font-weight:600;text-align:right}
+#about .ab-cta{display:flex;flex-wrap:wrap;gap:.7rem;padding:0 .6rem}
+#about .ab-cta a{flex:1 1 150px;justify-content:center;white-space:nowrap}
+
+#about .ab-story{display:grid;gap:1.15rem;align-content:start}
+#about .ab-story p{color:var(--text2);font-size:1rem;line-height:1.85;max-width:64ch}
+#about .ab-story .ab-lead{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.4vw,2.8rem);line-height:1.18;letter-spacing:-.01em;color:var(--text);max-width:20ch}
+#about .ab-quote{margin:.3rem 0;padding:.3rem 0 .3rem 1.3rem;border-left:3px solid var(--green2);font-style:italic;color:var(--text2);line-height:1.8;max-width:60ch}
+#about .ab-proof{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:.4rem}
+#about .ab-proof li{display:grid;grid-template-columns:auto 1fr;gap:.15rem .8rem;align-items:start;padding:1rem;border-radius:var(--r-md);background:var(--g2);border:1px solid var(--border)}
+#about .ab-proof i{grid-row:span 2;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:.85rem}
+#about .ab-proof strong{font-size:.92rem;color:var(--text);line-height:1.35}
+#about .ab-proof span{font-size:.8rem;color:var(--muted);line-height:1.55}
+
+/* Evidence strip */
+#about .ab-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:3.5rem;padding:1.6rem 0;border-block:1px solid var(--border)}
+#about .ab-stats div{text-align:center;padding:0 1rem}
+#about .ab-stats div+div{border-left:1px solid var(--border)}
+#about .ab-stats b{display:block;font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);line-height:1.1;color:var(--green-dk)}
+#about .ab-stats span{font-size:.82rem;color:var(--muted)}
+
+/* What I do — ERP leads */
+#about .ab-bento{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+#about .ab-b{padding:1.7rem}
+#about .ab-b-lead{grid-column:span 2;grid-row:span 2}
+#about .ab-b-wide{grid-column:span 2}
+#about .ab-b h4{font-size:1.05rem;color:var(--text);margin:1rem 0 .5rem}
+#about .ab-b p{font-size:.86rem;line-height:1.7;color:var(--text2)}
+#about .ab-b-lead h4{font-family:'Playfair Display',serif;font-size:1.75rem;line-height:1.2}
+#about .ab-b-lead p{font-size:.95rem}
+#about .ab-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+#about .ab-tags span{font-size:.74rem;font-weight:600;color:var(--green-dk);background:rgba(212,129,58,.1);border-radius:var(--r-full);padding:.25rem .75rem}
+#about .ab-b .ab-note{margin-top:1.2rem;padding-top:1rem;border-top:1px dashed rgba(212,129,58,.3);font-size:.82rem;color:var(--muted)}
+
+/* Principles with proof */
+#about .ab-prin{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+#about .ab-prin .u-card{padding:1.6rem}
+#about .ab-prin h4{font-size:1.05rem;color:var(--text);margin-bottom:.4rem}
+#about .ab-prin p{font-size:.86rem;line-height:1.7;color:var(--text2)}
+#about .ab-see{display:flex;gap:.6rem;align-items:flex-start;margin-top:1rem;padding-top:.9rem;border-top:1px dashed rgba(212,129,58,.3);font-size:.8rem;line-height:1.55;font-weight:600;color:var(--green-dk)}
+#about .ab-see i{margin-top:.25rem;font-size:.8rem}
+
+/* Reach me */
+#about .ab-reach{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.9rem}
+#about .ab-link{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;border-radius:var(--r-md);background:var(--g2);border:1px solid var(--border)}
+#about .ab-link>i{color:var(--green-dk);font-size:1.05rem;width:1.3rem;text-align:center;flex-shrink:0}
+#about .ab-link a{flex:1;min-width:0;font-size:.88rem;font-weight:600;color:var(--text);overflow-wrap:anywhere;line-height:1.4}
+#about .ab-link a:hover{color:var(--green-dk)}
+#about .ab-link small{display:block;font-size:.72rem;font-weight:500;color:var(--muted)}
+#about .ab-link button{border:0;background:transparent;color:var(--green-dk);font-size:.95rem;padding:.45rem;border-radius:var(--r-xs);cursor:pointer}
+#about .ab-link button:hover,#about .ab-link button.done{background:rgba(212,129,58,.14)}
+#about .ab-link button.done{color:#15803d}
+#about .ab-link a:focus-visible,#about .ab-link button:focus-visible,#about .ab-cta a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+@media(max-width:1000px){
+  #about .ab-intro{grid-template-columns:1fr;gap:2.2rem}
+  #about .ab-profile{max-width:440px;margin-inline:auto;width:100%}
+  #about .ab-bento{grid-template-columns:repeat(2,1fr)}
+  #about .ab-b-lead,#about .ab-b-wide{grid-column:span 2;grid-row:auto}
+  #about .ab-stats{grid-template-columns:1fr 1fr;row-gap:1.5rem}
+  #about .ab-stats div:nth-child(3){border-left:0}
+}
+@media(max-width:600px){
+  #about .ab-proof,#about .ab-prin{grid-template-columns:1fr}
+  #about .ab-bento{grid-template-columns:1fr}
+  #about .ab-b-lead,#about .ab-b-wide{grid-column:auto}
+  #about .ab-story .ab-lead{max-width:none}
+}
