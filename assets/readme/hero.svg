@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460" role="img" aria-label="Muhammad Umer Faheem — ERP Management Trainee Officer and BI Specialist, animated liquid glass banner">
+<title>Muhammad Umer Faheem — ERP Management Trainee Officer and BI Specialist, animated liquid glass banner</title>
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif}
+.mono{font-family:'SF Mono','JetBrains Mono',Consolas,Menlo,'Courier New',monospace}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes blink{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,50px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-110px,-40px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,70px)}}
+.o1{animation:d1 14s ease-in-out infinite}.o2{animation:d2 17s ease-in-out infinite}.o3{animation:d3 19s ease-in-out infinite}
+
+.panel{animation:float 9s ease-in-out infinite}
+.refract{animation:refr 16s ease-in-out infinite}
+@keyframes refr{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,24px) scale(1.06)}}
+.sweep{animation:sweep 9s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sweep{0%{transform:skewX(-18deg) translateX(0)}45%,100%{transform:skewX(-18deg) translateX(1900px)}}
+.orbit{animation:orbit 10s linear infinite}
+@keyframes orbit{from{stroke-dashoffset:0}to{stroke-dashoffset:-1000}}
+.dot{animation:pulse 2.4s ease-in-out infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:0}12%{opacity:1}85%{opacity:.9}100%{transform:translateY(-330px);opacity:0}}
+.b1{animation:bub 11s ease-in infinite}.b2{animation:bub 13s ease-in 2s infinite}.b3{animation:bub 9s ease-in 4s infinite}.b4{animation:bub 15s ease-in 1s infinite}.b5{animation:bub 12s ease-in 6s infinite}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs>
+<linearGradient id="hgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".20"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+<linearGradient id="hgs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="#fff" stop-opacity=".10"/><stop offset=".65" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".50"/></linearGradient>
+<linearGradient id="hspec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="hsw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="hacc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB84D"/><stop offset=".55" stop-color="#38BDF8"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+<filter id="hblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+<filter id="hblur2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="46"/></filter>
+<filter id="hglow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
+<filter id="hshadow" x="-20%" y="-30%" width="140%" height="170%"><feGaussianBlur stdDeviation="26"/></filter>
+<clipPath id="hclip"><rect x="90" y="62" width="1020" height="336" rx="46"/></clipPath>
+<clipPath id="hbg"><rect width="1200" height="460" rx="34"/></clipPath>
+<pattern id="hdots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="1.5" cy="1.5" r="1.1" fill="#fff" opacity=".10"/></pattern>
+<radialGradient id="hvig" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+<linearGradient id="hname" gradientUnits="userSpaceOnUse" x1="200" y1="0" x2="1000" y2="0">
+<stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#FFE3B3"/><stop offset=".7" stop-color="#BFE9FF"/><stop offset="1" stop-color="#fff"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="-500 0;500 0;-500 0" dur="9s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></linearGradient>
+<radialGradient id="hbub" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity=".02"/></radialGradient>
+</defs>
+<g clip-path="url(#hbg)">
+<rect width="1200" height="460" fill="#070A12"/>
+<g filter="url(#hblur)" opacity="1">
+<circle class="o1" cx="240.0" cy="161.0" r="150" fill="#FFB84D" opacity=".62"/>
+<circle class="o2" cx="936.0" cy="331.2" r="170" fill="#38BDF8" opacity=".55"/>
+<circle class="o3" cx="624.0" cy="55.199999999999996" r="135" fill="#A78BFA" opacity=".55"/></g>
+<rect width="1200" height="460" fill="url(#hdots)"/>
+<rect width="1200" height="460" fill="url(#hvig)"/>
+</g>
+<rect x="1" y="1" width="1198" height="458" rx="33" fill="none" stroke="url(#hgs)" stroke-opacity=".5"/>
+
+<g class="panel">
+ <rect x="100" y="96" width="1000" height="336" rx="46" fill="#000" opacity=".55" filter="url(#hshadow)"/>
+ <g clip-path="url(#hclip)">
+  <rect x="90" y="62" width="1020" height="336" fill="#0A0F1C"/>
+  <g class="refract"><g filter="url(#hblur2)" opacity="1">
+<circle class="o1" cx="240.0" cy="161.0" r="187.5" fill="#FFB84D" opacity=".62"/>
+<circle class="o2" cx="936.0" cy="331.2" r="212.5" fill="#38BDF8" opacity=".55"/>
+<circle class="o3" cx="624.0" cy="55.199999999999996" r="168.75" fill="#A78BFA" opacity=".55"/></g></g>
+  <rect x="90" y="62" width="1020" height="336" fill="url(#hgf)"/>
+  <ellipse cx="600.0" cy="-8" rx="632.4" ry="168.0" fill="url(#hspec)"/>
+  <rect class="sweep" x="-380" y="22" width="260" height="416" fill="url(#hsw)" transform="skewX(-18)"/>
+ </g>
+ <rect x="90" y="62" width="1020" height="336" rx="46" fill="none" stroke="url(#hgs)" stroke-width="1.6"/>
+ <rect x="94" y="66" width="1012" height="328" rx="42" fill="none" stroke="#fff" stroke-opacity=".07"/>
+ <rect class="orbit" x="90" y="62" width="1020" height="336" rx="46" fill="none" stroke="url(#hacc)" stroke-width="3" pathLength="1000" stroke-dasharray="110 890" stroke-linecap="round" filter="url(#hglow)"/>
+ <rect class="orbit" x="90" y="62" width="1020" height="336" rx="46" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.4" pathLength="1000" stroke-dasharray="70 930" stroke-linecap="round"/>
+
+ <g style="animation:rise 1s cubic-bezier(.22,.8,.24,1) .15s both">
+  <rect x="450.0" y="96" width="300" height="38" rx="19" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".28"/>
+  <circle class="dot" cx="478.0" cy="115" r="4.5" fill="#FFB84D" style="transform-origin:478.0px 115px"/>
+  <text x="608.0" y="120" text-anchor="middle" font-size="13" font-weight="600" letter-spacing="3" fill="#E2E8F0">PORTFOLIO · LAHORE, PK</text>
+ </g>
+ <text x="600.0" y="210" text-anchor="middle" font-size="68" font-weight="800" letter-spacing="-1.5" fill="url(#hname)" style="animation:rise 1.1s cubic-bezier(.22,.8,.24,1) .35s both">Muhammad Umer Faheem</text>
+ <text x="600.0" y="258" text-anchor="middle" font-size="25" font-weight="500" fill="#CBD5E1" style="animation:rise 1.1s cubic-bezier(.22,.8,.24,1) .55s both">ERP Management Trainee Officer  <tspan fill="#FFB84D">·</tspan>  BI Specialist</text>
+ <rect x="540.0" y="284" width="120" height="3" rx="1.5" fill="url(#hacc)" style="animation:fade 1.2s ease .9s both"/>
+ <g style="animation:rise 1s cubic-bezier(.22,.8,.24,1) .8s both">
+  <g><rect x="229.3" y="324" width="274.0" height="44" rx="22" fill="url(#hgf)" stroke="url(#hgs)" stroke-width="1.2"/>
+<path d="M251.3 326 H481.3" stroke="#fff" stroke-opacity=".5" stroke-width="1" stroke-linecap="round"/>
+<circle cx="253.3" cy="346" r="5" fill="#FFB84D"/><circle cx="253.3" cy="346" r="10" fill="#FFB84D" opacity=".25"/>
+<text x="271.3" y="352" font-size="16" font-weight="600" fill="#F1F5F9">Frontend Development</text></g><g><rect x="521.3" y="324" width="284.6" height="44" rx="22" fill="url(#hgf)" stroke="url(#hgs)" stroke-width="1.2"/>
+<path d="M543.3 326 H783.9" stroke="#fff" stroke-opacity=".5" stroke-width="1" stroke-linecap="round"/>
+<circle cx="545.3" cy="346" r="5" fill="#38BDF8"/><circle cx="545.3" cy="346" r="10" fill="#38BDF8" opacity=".25"/>
+<text x="563.3" y="352" font-size="16" font-weight="600" fill="#F1F5F9">Business Intelligence</text></g><g><rect x="823.9" y="324" width="146.8" height="44" rx="22" fill="url(#hgf)" stroke="url(#hgs)" stroke-width="1.2"/>
+<path d="M845.9 326 H948.7" stroke="#fff" stroke-opacity=".5" stroke-width="1" stroke-linecap="round"/>
+<circle cx="847.9" cy="346" r="5" fill="#A78BFA"/><circle cx="847.9" cy="346" r="10" fill="#A78BFA" opacity=".25"/>
+<text x="865.9" y="352" font-size="16" font-weight="600" fill="#F1F5F9">Odoo ERP</text></g>
+ </g>
+</g>
+
+<g class="bubbles">
+ <circle class="b1" cx="150" cy="420" r="16" fill="url(#hbub)" stroke="#fff" stroke-opacity=".35"/>
+ <circle class="b2" cx="1030" cy="430" r="11" fill="url(#hbub)" stroke="#fff" stroke-opacity=".35"/>
+ <circle class="b3" cx="620" cy="440" r="8" fill="url(#hbub)" stroke="#fff" stroke-opacity=".35"/>
+ <circle class="b4" cx="1110" cy="400" r="20" fill="url(#hbub)" stroke="#fff" stroke-opacity=".35"/>
+ <circle class="b5" cx="70" cy="300" r="9" fill="url(#hbub)" stroke="#fff" stroke-opacity=".35"/>
+</g>
+</svg>

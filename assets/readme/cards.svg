@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-label="Three focus areas: frontend craft, business intelligence, ERP and systems">
+<title>Three focus areas: frontend craft, business intelligence, ERP and systems</title>
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif}
+.mono{font-family:'SF Mono','JetBrains Mono',Consolas,Menlo,'Courier New',monospace}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes blink{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,30px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-110px,-40px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,70px)}}
+.o1{animation:d1 14s ease-in-out infinite}.o2{animation:d2 17s ease-in-out infinite}.o3{animation:d3 19s ease-in-out infinite}
+
+.sweep{animation:sw 8s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sw{0%{transform:skewX(-18deg) translateX(0)}50%,100%{transform:skewX(-18deg) translateX(700px)}}
+@keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}.bar{animation:bar 2.8s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}.spin{animation:spin 18s linear infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs>
+<linearGradient id="cgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".20"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+<linearGradient id="cgs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="#fff" stop-opacity=".10"/><stop offset=".65" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".50"/></linearGradient>
+<linearGradient id="cspec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="csw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="cacc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB84D"/><stop offset=".55" stop-color="#38BDF8"/><stop offset="1" stop-color="#A78BFA"/></linearGradient><filter id="cblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="30"/></filter><clipPath id="cc0"><rect x="30.0" y="40" width="360" height="250" rx="36"/></clipPath><clipPath id="cc1"><rect x="420.0" y="40" width="360" height="250" rx="36"/></clipPath><clipPath id="cc2"><rect x="810.0" y="40" width="360" height="250" rx="36"/></clipPath></defs><g style="animation:rise .9s cubic-bezier(.22,.8,.24,1) 0.1s both"><g style="animation:float 7s ease-in-out 0.0s infinite">
+<ellipse cx="210.0" cy="300" rx="150.0" ry="10" fill="#FFB84D" opacity=".18" filter="url(#cblur)"/>
+<g clip-path="url(#cc0)"><rect x="30.0" y="40" width="360" height="250" fill="#0A0F1C"/>
+<circle class="o1" cx="100.0" cy="80" r="90" fill="#FFB84D" opacity=".5" filter="url(#cblur)"/>
+<rect x="30.0" y="40" width="360" height="250" fill="url(#cgf)"/><rect x="30.0" y="40" width="360" height="112.5" fill="url(#cspec)"/>
+<rect class="sweep" x="-260" y="20" width="150" height="290" fill="url(#csw)" transform="skewX(-18)" style="animation-delay:0.0s"/></g>
+<rect x="30.0" y="40" width="360" height="250" rx="36" fill="none" stroke="url(#cgs)" stroke-width="1.4"/>
+<circle cx="90.0" cy="112" r="40" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".3"/>
+<text class="mono" x="90.0" y="124" text-anchor="middle" font-size="26" font-weight="800" fill="#FFB84D">&lt;/&gt;</text>
+<text x="66.0" y="182" font-size="23" font-weight="750" fill="#fff">Frontend Craft</text><text x="66.0" y="210" font-size="16" fill="#CBD5E1">Figma specs turned into responsive</text><text x="66.0" y="234" font-size="16" fill="#CBD5E1">HTML, CSS and JavaScript on live</text><text x="66.0" y="258" font-size="16" fill="#CBD5E1">client projects.</text></g></g><g style="animation:rise .9s cubic-bezier(.22,.8,.24,1) 0.28s both"><g style="animation:float 7s ease-in-out 1.4s infinite">
+<ellipse cx="600.0" cy="300" rx="150.0" ry="10" fill="#38BDF8" opacity=".18" filter="url(#cblur)"/>
+<g clip-path="url(#cc1)"><rect x="420.0" y="40" width="360" height="250" fill="#0A0F1C"/>
+<circle class="o2" cx="490.0" cy="80" r="90" fill="#38BDF8" opacity=".5" filter="url(#cblur)"/>
+<rect x="420.0" y="40" width="360" height="250" fill="url(#cgf)"/><rect x="420.0" y="40" width="360" height="112.5" fill="url(#cspec)"/>
+<rect class="sweep" x="-260" y="20" width="150" height="290" fill="url(#csw)" transform="skewX(-18)" style="animation-delay:1.2s"/></g>
+<rect x="420.0" y="40" width="360" height="250" rx="36" fill="none" stroke="url(#cgs)" stroke-width="1.4"/>
+<circle cx="480.0" cy="112" r="40" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".3"/>
+<rect class="bar" x="464.0" y="118" width="9" height="22" rx="3" fill="#38BDF8" style="animation-delay:0.0s;transform-origin:468.5px 140px"/><rect class="bar" x="478.0" y="102" width="9" height="38" rx="3" fill="#38BDF8" style="animation-delay:0.25s;transform-origin:482.5px 140px"/><rect class="bar" x="492.0" y="110" width="9" height="30" rx="3" fill="#38BDF8" style="animation-delay:0.5s;transform-origin:496.5px 140px"/><rect class="bar" x="506.0" y="90" width="9" height="50" rx="3" fill="#38BDF8" style="animation-delay:0.75s;transform-origin:510.5px 140px"/>
+<text x="456.0" y="182" font-size="23" font-weight="750" fill="#fff">Business Intelligence</text><text x="456.0" y="210" font-size="16" fill="#CBD5E1">Power BI reporting and Oracle SQL</text><text x="456.0" y="234" font-size="16" fill="#CBD5E1">that turn raw operations data into</text><text x="456.0" y="258" font-size="16" fill="#CBD5E1">decisions.</text></g></g><g style="animation:rise .9s cubic-bezier(.22,.8,.24,1) 0.45999999999999996s both"><g style="animation:float 7s ease-in-out 2.8s infinite">
+<ellipse cx="990.0" cy="300" rx="150.0" ry="10" fill="#A78BFA" opacity=".18" filter="url(#cblur)"/>
+<g clip-path="url(#cc2)"><rect x="810.0" y="40" width="360" height="250" fill="#0A0F1C"/>
+<circle class="o3" cx="880.0" cy="80" r="90" fill="#A78BFA" opacity=".5" filter="url(#cblur)"/>
+<rect x="810.0" y="40" width="360" height="250" fill="url(#cgf)"/><rect x="810.0" y="40" width="360" height="112.5" fill="url(#cspec)"/>
+<rect class="sweep" x="-260" y="20" width="150" height="290" fill="url(#csw)" transform="skewX(-18)" style="animation-delay:2.4s"/></g>
+<rect x="810.0" y="40" width="360" height="250" rx="36" fill="none" stroke="url(#cgs)" stroke-width="1.4"/>
+<circle cx="870.0" cy="112" r="40" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".3"/>
+<g class="spin" style="transform-origin:870.0px 112px"><line x1="870.0" y1="112" x2="888.5" y2="130.3" stroke="#A78BFA" stroke-opacity=".6"/><circle cx="888.5" cy="130.3" r="4.5" fill="#A78BFA"/><line x1="870.0" y1="112" x2="851.7" y2="130.5" stroke="#A78BFA" stroke-opacity=".6"/><circle cx="851.7" cy="130.5" r="4.5" fill="#A78BFA"/><line x1="870.0" y1="112" x2="851.5" y2="93.7" stroke="#A78BFA" stroke-opacity=".6"/><circle cx="851.5" cy="93.7" r="4.5" fill="#A78BFA"/><line x1="870.0" y1="112" x2="888.3" y2="93.5" stroke="#A78BFA" stroke-opacity=".6"/><circle cx="888.3" cy="93.5" r="4.5" fill="#A78BFA"/></g><circle cx="870.0" cy="112" r="8" fill="#A78BFA"/>
+<text x="846.0" y="182" font-size="23" font-weight="750" fill="#fff">ERP &amp; Systems</text><text x="846.0" y="210" font-size="16" fill="#CBD5E1">Odoo implementation and</text><text x="846.0" y="234" font-size="16" fill="#CBD5E1">customisation across textile, apparel</text><text x="846.0" y="258" font-size="16" fill="#CBD5E1">and retail operations.</text></g></g>
+</svg>

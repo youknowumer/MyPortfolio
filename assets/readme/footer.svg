@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="Footer banner with animated liquid waves: Let's build something remarkable">
+<title>Footer banner with animated liquid waves: Let's build something remarkable</title>
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif}
+.mono{font-family:'SF Mono','JetBrains Mono',Consolas,Menlo,'Courier New',monospace}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes blink{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(90px,50px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-110px,-40px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,70px)}}
+.o1{animation:d1 14s ease-in-out infinite}.o2{animation:d2 17s ease-in-out infinite}.o3{animation:d3 19s ease-in-out infinite}
+
+.sweep{animation:sw 8s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sw{0%{transform:skewX(-18deg) translateX(0)}50%,100%{transform:skewX(-18deg) translateX(1300px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs>
+<linearGradient id="fgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".20"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+<linearGradient id="fgs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="#fff" stop-opacity=".10"/><stop offset=".65" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".50"/></linearGradient>
+<linearGradient id="fspec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="fsw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="facc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB84D"/><stop offset=".55" stop-color="#38BDF8"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+<filter id="fblur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+<clipPath id="fbg"><rect width="1200" height="300" rx="34"/></clipPath>
+<clipPath id="fp"><rect x="260" y="50" width="680" height="120" rx="40"/></clipPath></defs>
+<g clip-path="url(#fbg)"><rect width="1200" height="300" fill="#070A12"/>
+<g filter="url(#fblur)"><circle class="o1" cx="260" cy="90" r="130" fill="#FFB84D" opacity=".45"/><circle class="o2" cx="940" cy="120" r="140" fill="#38BDF8" opacity=".4"/><circle class="o3" cx="600" cy="40" r="100" fill="#A78BFA" opacity=".4"/></g>
+<path d="M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z" fill="#FFB84D" opacity="0.22"><animate attributeName="d" values="M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z;M0 205 Q150 243 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z;M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z" dur="9s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path><path d="M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z" fill="none" stroke="#FFB84D" stroke-width="1.5" opacity=".8"><animate attributeName="d" values="M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z;M0 205 Q150 243 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z;M0 205 Q150 167 300 205 T600 205 T900 205 T1200 205 T1500 205 V300 H0 Z" dur="9s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path><path d="M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z" fill="#38BDF8" opacity="0.24"><animate attributeName="d" values="M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z;M0 225 Q150 255 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z;M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z" dur="11s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path><path d="M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z" fill="none" stroke="#38BDF8" stroke-width="1.5" opacity=".8"><animate attributeName="d" values="M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z;M0 225 Q150 255 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z;M0 225 Q150 195 300 225 T600 225 T900 225 T1200 225 T1500 225 V300 H0 Z" dur="11s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path><path d="M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z" fill="#A78BFA" opacity="0.3"><animate attributeName="d" values="M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z;M0 245 Q150 269 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z;M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z" dur="13s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path><path d="M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z" fill="none" stroke="#A78BFA" stroke-width="1.5" opacity=".8"><animate attributeName="d" values="M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z;M0 245 Q150 269 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z;M0 245 Q150 221 300 245 T600 245 T900 245 T1200 245 T1500 245 V300 H0 Z" dur="13s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.5;1" keySplines=".45 0 .55 1;.45 0 .55 1"/></path></g>
+<g style="animation:rise 1s cubic-bezier(.22,.8,.24,1) both"><g style="animation:float 9s ease-in-out infinite">
+<g clip-path="url(#fp)"><rect x="260" y="50" width="680" height="120" fill="#0A0F1C" fill-opacity=".55"/><rect x="260" y="50" width="680" height="120" fill="url(#fgf)"/><rect x="260" y="50" width="680" height="55" fill="url(#fspec)"/>
+<rect class="sweep" x="-200" y="40" width="140" height="140" fill="url(#fsw)" transform="skewX(-18)"/></g>
+<rect x="260" y="50" width="680" height="120" rx="40" fill="none" stroke="url(#fgs)" stroke-width="1.4"/>
+<text x="600" y="102" text-anchor="middle" font-size="30" font-weight="750" fill="#fff">Let’s build something remarkable.</text>
+<text x="600" y="136" text-anchor="middle" font-size="17" fill="#CBD5E1">Open to collaboration · Lahore, Pakistan</text></g></g>
+<rect x="1" y="1" width="1198" height="298" rx="33" fill="none" stroke="url(#fgs)" stroke-opacity=".45"/>
+</svg>

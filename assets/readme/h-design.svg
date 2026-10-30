@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="88" viewBox="0 0 1200 88" role="img" aria-label="Section: Design System">
+<title>Section: Design System</title>
+<style>
+text{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Inter,'Helvetica Neue',Arial,sans-serif}
+.mono{font-family:'SF Mono','JetBrains Mono',Consolas,Menlo,'Courier New',monospace}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+@keyframes blink{0%,45%{opacity:1}50%,95%{opacity:0}100%{opacity:1}}
+
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,6px)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-90px,-6px)}}
+@keyframes d3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,10px)}}
+.o1{animation:d1 14s ease-in-out infinite}.o2{animation:d2 17s ease-in-out infinite}.o3{animation:d3 19s ease-in-out infinite}
+
+.sweep{animation:sw 8s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes sw{0%{transform:skewX(-18deg) translateX(0)}55%,100%{transform:skewX(-18deg) translateX(1600px)}}
+.dot{animation:pulse 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<defs>
+<linearGradient id="sgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".20"/><stop offset=".5" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+<linearGradient id="sgs" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset=".35" stop-color="#fff" stop-opacity=".10"/><stop offset=".65" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".50"/></linearGradient>
+<linearGradient id="sspec" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".30"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="ssw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<linearGradient id="sacc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFB84D"/><stop offset=".55" stop-color="#38BDF8"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+<filter id="sblur" x="-50%" y="-100%" width="200%" height="300%"><feGaussianBlur stdDeviation="28"/></filter>
+<clipPath id="sc"><rect x="6" y="10" width="1188" height="68" rx="34"/></clipPath></defs>
+<g style="animation:rise .9s cubic-bezier(.22,.8,.24,1) both">
+<g clip-path="url(#sc)"><rect x="6" y="10" width="1188" height="68" fill="#0A0F1C"/>
+<g filter="url(#sblur)"><circle class="o1" cx="140" cy="44" r="60" fill="#A78BFA" opacity=".7"/><circle class="o2" cx="1000" cy="50" r="70" fill="#38BDF8" opacity=".45"/><circle class="o3" cx="600.0" cy="20" r="45" fill="#38BDF8" opacity=".35"/></g>
+<rect x="6" y="10" width="1188" height="68" fill="url(#sgf)"/><rect x="6" y="10" width="1188" height="34" fill="url(#sspec)"/>
+<rect class="sweep" x="-300" y="0" width="200" height="88" fill="url(#ssw)" transform="skewX(-18)"/></g>
+<rect x="6" y="10" width="1188" height="68" rx="34" fill="none" stroke="url(#sgs)" stroke-width="1.4"/>
+<circle cx="52" cy="44" r="7" fill="#A78BFA"/><circle class="dot" cx="52" cy="44" r="14" fill="#A78BFA" opacity=".35" style="transform-origin:52px 44px"/>
+<text x="84" y="55" font-size="31" font-weight="750" letter-spacing="-.4" fill="#fff">Design System</text>
+<text x="1152" y="50" text-anchor="end" font-size="13" font-weight="600" letter-spacing="3.2" fill="#CBD5E1" opacity=".85">LOOK &amp; FEEL</text>
+</g>
+</svg>
