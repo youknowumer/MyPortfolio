@@ -85,7 +85,7 @@
     { icon:'fa-user',     title:'About Me',        sub:'Learn who Umer is',                  action:()=>scrollSection('about'),              badge:'Section' },
     { icon:'fa-code',     title:'Skills',          sub:'Technical arsenal & expertise',       action:()=>scrollSection('skills'),             badge:'Section' },
     { icon:'fa-briefcase',title:'Experience',      sub:(window.App&&App.stats?App.stats().roles:4)+' roles · internships & current ERP position',        action:()=>scrollSection('experience'),         badge:'Section' },
-    { icon:'fa-graduation-cap',title:'Education',  sub:'UMT BBIS final year',                 action:()=>scrollSection('education'),          badge:'Section' },
+    { icon:'fa-graduation-cap',title:'Education',  sub:'UMT BBIS graduate, 2026',                 action:()=>scrollSection('education'),          badge:'Section' },
     { icon:'fa-rocket',   title:'Projects',        sub:'5 key projects incl. ICAISAI capstone',action:()=>scrollSection('projects'),          badge:'Section' },
     { icon:'fa-certificate',title:'Certifications',sub:(window.App&&App.stats?App.stats().certs+' certificates · '+App.stats().providers+' providers':'Google, IBM, Microsoft…'),    action:()=>scrollSection('certifications'),     badge:'Section' },
     { icon:'fa-trophy',   title:'Awards',          sub:'Recognition & achievements',          action:()=>scrollSection('awards'),             badge:'Section' },

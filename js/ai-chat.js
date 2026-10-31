@@ -31,16 +31,21 @@ EDUCATION
 ─────────
 • Bachelor of Business Information Systems (BBIS)
   University of Management and Technology (UMT), Lahore
-  November 2022 – August 2026 | Currently in Final (8th) Semester
+  November 2022 – June 2026 | Graduated (all 8 semesters completed)
   Focus areas: Database Systems, Business Process Management, ERP, BI, Web Technologies
 
 • FSc Pre-Engineering
   Unique College (UGI), Lahore | 2020–2022
   Foundation in mathematics, physics, and analytical thinking
 
-PROFESSIONAL EXPERIENCE (3 Roles)
+PROFESSIONAL EXPERIENCE (4 Roles)
 ───────────────────────────────────
-1. DATA ANNOTATOR — Nexpred Solutions (Remote) | February–March 2026
+1. MANAGEMENT TRAINEE OFFICER (MTO) – ERP — Maryum N Maria – Leen Textile (Pvt.) Ltd. (Onsite, Gajumatta, Lahore) | June 2026 – Present (Full-Time)
+   What he does: Led the end-to-end implementation and tailoring of Odoo ERP modules, integrating complex retail and textile workflows for a successful system deployment.
+   - Engineers dynamic business reports and analytical dashboards that turn raw system data into actionable operational insights for leadership
+   Why it matters: Real, full-time ERP delivery in a live textile, apparel and retail business.
+
+2. DATA ANNOTATOR — Nexpred Solutions (Remote) | February–March 2026
    What he did: Processed raw video datasets for Machine Learning / Computer Vision AI systems.
    - Used CVAT (Computer Vision Annotation Tool) to annotate video frames precisely
    - Converted annotations between YOLO and COCO formats for ML pipeline compatibility
@@ -48,14 +53,14 @@ PROFESSIONAL EXPERIENCE (3 Roles)
    - Contributed directly to real AI/ML production workflows — hands-on AI industry experience
    Why it matters: This shows Umer can work in cutting-edge AI/ML environments, even as a fresh graduate.
 
-2. HR INTERNEE — MGA Industries Pvt. Ltd. (Onsite, Lahore) | August–September 2025
+3. HR INTERNEE — MGA Industries Pvt. Ltd. (Onsite, Lahore) | August–September 2025
    What he did: Operated within a real HR department of a manufacturing firm.
    - Talent acquisition: CV screening, candidate shortlisting, interview scheduling
    - New employee onboarding, orientation, and documentation
    - Payroll processing and employee record management via Oracle HR database
    Why it matters: Demonstrates his business + HR operational skills, adding a human/organizational layer to his tech profile.
 
-3. FRONT-END INTERN — Tara Technologies Pvt. Ltd. (Onsite, Lahore) | July–September 2023
+4. FRONT-END INTERN — Tara Technologies Pvt. Ltd. (Onsite, Lahore) | July–September 2023
    What he did: Worked in a real software house on live client projects.
    - UI/UX design using Figma, Adobe Photoshop, and Illustrator
    - Frontend coding with HTML, CSS; collaboration and version control via GitHub
@@ -66,7 +71,7 @@ PROFESSIONAL EXPERIENCE (3 Roles)
 TECHNICAL SKILLS (Full Arsenal)
 ────────────────────────────────
 Frontend Development:
-  HTML5, CSS3, JavaScript (functional level), WordPress, Responsive Web Design
+  HTML5, CSS3, JavaScript, WordPress (foundational), Responsive Web Design
 
 Business Intelligence & Data:
   Microsoft Power BI (DAX, dashboards, KPIs), SQL (queries, joins, normalization),
@@ -74,10 +79,10 @@ Business Intelligence & Data:
 
 Enterprise Resource Planning:
   Odoo ERP (CRM, HR, Sales, Inventory, Manufacturing, Procurement, Analytics, Marketing modules),
-  SAP Business Basics, Oracle HR Database
+  SAP ERP (Financial Accounting FI, Controlling CO, Supply Chain Management SCM), Oracle HR Database
 
 UI/UX & Graphic Design:
-  Figma, Adobe Photoshop, Adobe Illustrator, Adobe Premiere Pro,
+  Figma (foundational), Adobe Photoshop, Adobe Illustrator, Adobe Premiere Pro,
   Adobe After Effects, Adobe Audition, Canva
 
 Developer Tools & Methodologies:
@@ -85,10 +90,13 @@ Developer Tools & Methodologies:
   JIRA (Scrum/Agile project management)
 
 Programming Languages:
-  Python (basic scripting, IT automation), C++ (basics)
+  Python (advanced), C++ (foundational)
 
 Microsoft Office Suite:
   Excel (advanced), Word, PowerPoint, Access, Project
+
+Professional & Soft Skills:
+  Social media management, brand marketing, customer service, empathetic listening, leadership
 
 Languages Spoken:
   English (professional fluency), Urdu (native)
@@ -123,7 +131,7 @@ PROJECTS (5 Key Projects)
    - YOLO/COCO format conversion pipeline
    - Contributes to production ML model training
 
-CERTIFICATIONS (10+ Verified Credentials)
+CERTIFICATIONS (9 Credentials)
 ──────────────────────────────────────────
 • IT Automation with Python — Google | April 2025
 • Microsoft Power BI (Data Analysis & Visualization) — Uni Athena / Cambridge UK | April 2025
@@ -134,7 +142,6 @@ CERTIFICATIONS (10+ Verified Credentials)
 • Foundations of Project Management — Google | June 2025
 • Developing Interpersonal Skills — IBM | July 2025
 • Jira SCRUM Project Management — Coursera | July 2025
-(Plus additional certifications in digital tools and business applications)
 
 AWARDS & RECOGNITION
 ─────────────────────
@@ -166,7 +173,7 @@ PERSONALITY, STRENGTHS & VALUES
 • Sincere and hardworking: Everything Umer does, he does with complete dedication
 • Detail-oriented: He doesn't cut corners — precision is part of his identity
 • Collaborative: Works exceptionally well in teams; leads when needed, supports when needed
-• Continuous learner: 10+ certifications by age 22 speaks for itself
+• Continuous learner: 9 certifications from Google, IBM, SAP, Odoo and more
 • Bridge between business and technology: Rare combination — he understands the WHY (business) and the HOW (technology)
 • Motivated by impact: He doesn't build things just to complete them — he builds them to create real value
 • Resilient and growth-minded: Each challenge is a lesson; each project is a step forward
@@ -368,8 +375,8 @@ const UMER_KB = {
 
   who: {
     keys: ['who is umer','who is he','tell me about','introduce','about umer','about him','background','overview'],
-    answer: `<strong>Muhammad Umer Faheem</strong> is a driven, detail-oriented <strong>Business Information Systems graduate</strong> from the University of Management and Technology (UMT), Lahore — currently in his <strong>Final (8th) Semester</strong>, graduating August 2026.<br><br>
-He sits at a rare intersection: someone who <em>thinks like a business strategist</em> and <em>builds like a technologist</em>. His profile spans <strong>frontend development, ERP systems, business intelligence, UI/UX design,</strong> and <strong>data annotation for AI/ML</strong> — all backed by real internship experience and 10+ verified certifications.<br><br>
+    answer: `<strong>Muhammad Umer Faheem</strong> is a driven, detail-oriented <strong>Business Information Systems graduate</strong> from the University of Management and Technology (UMT), Lahore — who <strong>graduated in June 2026</strong> and now works full-time as a <strong>Management Trainee Officer – ERP at Maryum N Maria</strong> in Lahore.<br><br>
+He sits at a rare intersection: someone who <em>thinks like a business strategist</em> and <em>builds like a technologist</em>. His profile spans <strong>frontend development, ERP systems, business intelligence, UI/UX design,</strong> and <strong>data annotation for AI/ML</strong> — all backed by real internship and full-time ERP experience and 9 certifications.<br><br>
 🏆 His capstone ERP project was selected as <strong>one of only 3 out of the entire batch</strong> for the ICAISAI'26 exhibition at UMT — evaluated by a professional DevOps & Cloud expert.<br><br>
 He is based in <strong>Iqbal Town, Lahore, Pakistan</strong> and is actively open to work in Frontend Dev, BI, ERP, and UI/UX roles.`
   },
@@ -378,19 +385,21 @@ He is based in <strong>Iqbal Town, Lahore, Pakistan</strong> and is actively ope
     keys: ['skill','tech stack','tools','what can he do','what does he know','technologies','expertise','proficient','capable'],
     answer: `Umer brings a <strong>full-spectrum technical skill set</strong> across four domains:<br><br>
 <strong>🌐 Frontend Development</strong><br>
-HTML5, CSS3, JavaScript (functional), WordPress, Responsive Web Design<br><br>
+HTML5, CSS3, JavaScript, WordPress (foundational), Responsive Web Design<br><br>
 <strong>📊 Business Intelligence & Data</strong><br>
 Microsoft Power BI (DAX, KPI dashboards), SQL, Oracle Database, IBM SPSS, Data Annotation (CVAT, YOLO, COCO formats)<br><br>
 <strong>🏢 Enterprise Systems (ERP)</strong><br>
-Odoo ERP (all major modules), SAP Business Basics, Oracle HR Database<br><br>
+Odoo ERP (implementation, tailoring, reports and dashboards), SAP ERP (FI, CO, SCM), Oracle HR Database<br><br>
 <strong>🎨 UI/UX & Design</strong><br>
-Figma, Adobe Photoshop, Illustrator, Premiere Pro, After Effects, Audition, Canva<br><br>
+Figma (foundational), Adobe Photoshop, Illustrator, Premiere Pro, After Effects, Audition, Canva<br><br>
 <strong>🛠️ Dev Tools & Methods</strong><br>
 GitHub, Draw.io, JIRA / Scrum Agile<br><br>
 <strong>💻 Programming</strong><br>
-Python (IT automation, scripting), C++ (basics)<br><br>
+Python (advanced), C++ (foundational)<br><br>
 <strong>📁 Productivity</strong><br>
 MS Excel (advanced), Word, PowerPoint, Access, Project<br><br>
+<strong>🤝 Professional:</strong><br>
+Social media management, brand marketing, customer service, leadership<br><br>
 <strong>🗣️ Languages:</strong> English (professional fluency), Urdu (native)`
   },
 
@@ -411,18 +420,20 @@ CVAT annotation workflow for computer vision model training — converting betwe
 
   experience: {
     keys: ['experience','internship','intern','work','job','worked','employment','career','mga','tara','nexpred','nex pred','data annotator','hr internee','front end intern'],
-    answer: `Umer has <strong>3 professional roles</strong> — each adding a different dimension to his profile:<br><br>
-<strong>🤖 1. Data Annotator — Nexpred Solutions (Remote) | Feb–Mar 2026</strong><br>
+    answer: `Umer has <strong>4 professional roles</strong> — each adding a different dimension to his profile:<br><br>
+<strong>🏢 1. Management Trainee Officer – ERP — Maryum N Maria – Leen Textile (Pvt.) Ltd. (Onsite, Lahore) | Jun 2026 – Present</strong><br>
+His current full-time role. He led the end-to-end implementation and tailoring of Odoo ERP modules, integrating complex retail and textile workflows for a successful system deployment, and engineers dynamic business reports and analytical dashboards that turn raw system data into actionable insight for leadership.<br><br>
+<strong>🤖 2. Data Annotator — Nexpred Solutions (Remote) | Feb–Mar 2026</strong><br>
 Processed video datasets for real AI/ML computer vision systems. Used CVAT for precise frame annotation, converted between YOLO and COCO formats, and performed quality validation. This gives him direct, hands-on AI industry experience that very few fresh graduates can claim.<br><br>
-<strong>👥 2. HR Internee — MGA Industries Pvt. Ltd. (Onsite, Lahore) | Aug–Sep 2025</strong><br>
+<strong>👥 3. HR Internee — MGA Industries Pvt. Ltd. (Onsite, Lahore) | Aug–Sep 2025</strong><br>
 Worked inside a real HR department of a manufacturing company. Handled CV screening, interview scheduling, employee onboarding, payroll processing, and Oracle HR database management — proving he understands the human side of organizations, not just the tech.<br><br>
-<strong>💻 3. Front-End Intern — Tara Technologies Pvt. Ltd. (Onsite) | Jul–Sep 2023</strong><br>
+<strong>💻 4. Front-End Intern — Tara Technologies Pvt. Ltd. (Onsite) | Jul–Sep 2023</strong><br>
 His first professional role — inside a real software house. Designed UIs with Figma, Photoshop & Illustrator, wrote HTML/CSS, collaborated via GitHub on live client projects. Was <strong>formally recognized by the company</strong> for outstanding contributions — an extraordinary achievement for a first-year university student.`
   },
 
   certifications: {
     keys: ['certif','certificate','certified','credential','course','google','microsoft','ibm','sap','coursera','simplilearn','cambridge','odoo cert','python cert','power bi cert'],
-    answer: `Umer holds <strong>10+ verified certifications</strong> from 6 globally trusted platforms:<br><br>
+    answer: `Umer holds <strong>9 certifications</strong> from globally trusted platforms:<br><br>
 🐍 <strong>IT Automation with Python</strong> — Google | April 2025<br>
 📊 <strong>Microsoft Power BI</strong> (Data Analysis & Visualization) — Uni Athena / Cambridge UK | April 2025<br>
 🌐 <strong>WordPress Development</strong> — Coursera | April 2025<br>
@@ -433,7 +444,7 @@ His first professional role — inside a real software house. Designed UIs with 
 🤝 <strong>Developing Interpersonal Skills</strong> — IBM | July 2025<br>
 🔄 <strong>Jira SCRUM Project Management</strong> — Coursera | July 2025<br><br>
 Platforms: <strong>Google · Microsoft · IBM · SAP · Coursera · Simplilearn · Odoo · Cambridge UK</strong><br><br>
-10+ certifications by age 22 is not just impressive — it's a signal of someone who takes their craft seriously and never stops growing.`
+Nine certifications in 2025 alone is not just impressive — it's a signal of someone who takes their craft seriously and never stops growing.`
   },
 
   awards: {
@@ -454,9 +465,9 @@ Certified through Google, Microsoft, IBM, SAP, Coursera and Simplilearn, includi
     keys: ['education','degree','university','umt','college','study','studying','semester','bbis','pre-engineering','school','academic','qualification'],
     answer: `<strong>🎓 Bachelor of Business Information Systems (BBIS)</strong><br>
 University of Management and Technology (UMT), Lahore<br>
-November 2022 – August 2026 | <strong>Currently in Final (8th) Semester</strong><br><br>
+November 2022 – June 2026 | <strong>Graduated — all 8 semesters completed</strong><br><br>
 UMT is one of Pakistan's top-ranked universities. The BBIS program equips students with a rare blend of business management thinking and technical IT skills — covering database systems, ERP, business process management, data analytics, web technologies, and more.<br><br>
-Umer has used every semester to grow — not just academically, but professionally. By the time he graduates, he will have completed 3 internships, led a nationally exhibited capstone project, and earned 10+ international certifications.<br><br>
+Umer has used every semester to grow — not just academically, but professionally. He graduated having completed 3 internships, led an exhibited capstone project, and earned 9 international certifications.<br><br>
 <strong>📐 FSc Pre-Engineering</strong><br>
 Unique College (UGI), Lahore | 2020–2022<br>
 Built his foundation in mathematics, physics, and analytical problem-solving — a mindset that carries through everything he builds today.`
@@ -466,9 +477,9 @@ Built his foundation in mathematics, physics, and analytical problem-solving —
     keys: ['hire','why umer','why should','unique','standout','different','best candidate','fit','suitable','recommend','value','strength','what sets','why him'],
     answer: `Here's the honest, evidence-backed case for hiring Umer Faheem:<br><br>
 <strong>1. He bridges business AND technology</strong> — Most developers don't understand business processes. Most business analysts can't build. Umer does both. His BBIS degree, Odoo ERP expertise, Power BI skills, and frontend development form a rare combination.<br><br>
-<strong>2. He delivers at professional level, even as a student</strong> — Tara Technologies formally recognized him. His capstone was selected top 3 out of the entire university batch. These aren't participation awards — they're proof of quality output.<br><br>
-<strong>3. He never stops learning</strong> — 10+ certifications by age 22, from Google, IBM, Microsoft, SAP, and Cambridge UK. He doesn't wait to be taught — he seeks knowledge proactively.<br><br>
-<strong>4. He has real-world experience across 3 industries</strong> — AI/ML (data annotation), Manufacturing (HR & Oracle DB), and Software Development (frontend & UI/UX). That's breadth most fresh graduates simply don't have.<br><br>
+<strong>2. He delivers at professional level</strong> — Tara Technologies formally recognized him. His capstone was selected top 3 out of the entire university batch. These aren't participation awards — they're proof of quality output.<br><br>
+<strong>3. He never stops learning</strong> — 9 certifications, from Google, IBM, Microsoft, SAP, and Cambridge UK. He doesn't wait to be taught — he seeks knowledge proactively.<br><br>
+<strong>4. He has real-world experience across 4 industries</strong> — Textile & Retail (full-time Odoo ERP), AI/ML (data annotation), Manufacturing (HR & Oracle DB), and Software Development (frontend & UI/UX). That's breadth most fresh graduates simply don't have.<br><br>
 <strong>5. He works with sincerity and integrity</strong> — Ask anyone who's worked with him. He takes ownership, communicates clearly, and delivers with pride.<br><br>
 <strong>He is available now</strong> for Frontend Dev, BI/Data Analysis, ERP Consulting, and UI/UX roles. Full-time, part-time, or remote. 🚀`
   },
@@ -505,7 +516,7 @@ Both documents are professionally formatted and up to date. If you're a recruite
 <strong>💡 Sincere & Hardworking</strong> — He brings genuine dedication to every task. When Umer commits, he delivers — no shortcuts, no excuses.<br><br>
 <strong>🎯 Detail-Oriented</strong> — Whether it's designing a UI, writing SQL queries, or setting up ERP workflows, precision is his standard. He doesn't just get it done — he gets it right.<br><br>
 <strong>🤝 Collaborative & Communicative</strong> — He works well in teams, leads when needed, and supports others effectively. His internship recognitions prove this isn't self-reported — it's observed.<br><br>
-<strong>📈 Continuous Learner</strong> — 10+ certifications in 12 months tells you everything. He doesn't wait for opportunity — he prepares for it constantly.<br><br>
+<strong>📈 Continuous Learner</strong> — 9 certifications in a single year tells you everything. He doesn't wait for opportunity — he prepares for it constantly.<br><br>
 <strong>🌉 Bridge Builder</strong> — He understands business goals AND technical constraints. That rare balance makes him the person who can translate between stakeholders and developers.<br><br>
 <strong>🔥 Motivated by Impact</strong> — He doesn't build things to check boxes. He builds them to create real, lasting value.`
   },
@@ -576,9 +587,9 @@ This visual ability makes him rare — a developer who can also design, meaning 
     keys: ['python','automation','scripting','coding','programming','code','c++','developer'],
     answer: `Umer has practical programming skills to complement his systems and BI expertise:<br><br>
 <strong>🐍 Python:</strong><br>
-Functional-level proficiency — scripting, IT automation, and data processing. He earned the <strong>Google IT Automation with Python</strong> certification (April 2025), covering real-world automation scripts, working with files, processes, and APIs.<br><br>
+Advanced proficiency — scripting, IT automation, and data processing. He earned the <strong>Google IT Automation with Python</strong> certification (April 2025), covering real-world automation scripts, working with files, processes, and APIs.<br><br>
 <strong>⚡ C++:</strong><br>
-Basic knowledge from his pre-engineering foundation — understanding of logic, loops, data structures.<br><br>
+Foundational knowledge from his pre-engineering background — understanding of logic, loops, data structures.<br><br>
 While he identifies primarily as a Business-IT professional rather than a pure software developer, his programming knowledge allows him to work directly with developer teams, understand codebases, and automate repetitive tasks — valuable in any tech-oriented role.`
   },
 
@@ -635,11 +646,11 @@ function getAnswer(query) {
 
   // Fallback — general helpful response
   return `Great question! Let me point you in the right direction. Here's a quick summary of what I know about Umer:<br><br>
-👤 <strong>Who:</strong> Muhammad Umer Faheem — BBIS Final Year, UMT Lahore<br>
+👤 <strong>Who:</strong> Muhammad Umer Faheem — BBIS Graduate (2026), UMT Lahore — now MTO – ERP at Maryum N Maria<br>
 🏆 <strong>Top Achievement:</strong> ICAISAI'26 Exhibition Selectee (Top 3 of entire batch)<br>
-💼 <strong>Experience:</strong> 3 internships — AI/ML, HR, Frontend Development<br>
+💼 <strong>Experience:</strong> Full-time ERP role (MTO) plus 3 internships — AI/ML, HR, Frontend Development<br>
 ⚡ <strong>Skills:</strong> Frontend, Power BI, Odoo ERP, SQL, Figma, Adobe Suite<br>
-🏅 <strong>Certifications:</strong> 10+ from Google, IBM, Microsoft, SAP, Cambridge UK<br>
+🏅 <strong>Certifications:</strong> 9 from Google, IBM, Microsoft, SAP, Cambridge UK<br>
 📞 <strong>Contact:</strong> umerfaheem632@gmail.com | WhatsApp +92 325 8148564<br><br>
 Try asking: <em>"What are his skills?"</em>, <em>"Tell me about his projects"</em>, <em>"Why should I hire Umer?"</em> or <em>"How do I contact him?"</em>`;
 }
