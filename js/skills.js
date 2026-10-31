@@ -24,17 +24,48 @@ App.register('skills-v2', () => {
     return src.filter(s => res.every(r => r.test(s.t))).map(s => s.l);
   };
 
+  /* one-line descriptors — what each skill is used for */
+  const SUB = {
+    'HTML5': 'Semantic markup', 'CSS3': 'Layout & styling', 'JavaScript': 'Interactive interfaces', 'WordPress': 'Website building',
+    'GitHub': 'Version control & PRs', 'Python': 'Scripting & automation', 'C++': 'Programming basics', 'Responsive Design': 'Any screen size',
+    'SQL': 'Queries & joins', 'Oracle DB': 'Schemas & HR data', 'Power BI': 'DAX & KPI dashboards', 'IBM SPSS': 'Statistical analysis',
+    'Data Annotation': 'CVAT · YOLO · COCO', 'ER Diagram Design': 'ER & data modelling',
+    'Odoo ERP': 'Implement & customise', 'SAP ERP': 'FI · CO · SCM', 'CRM Platforms': 'Customer pipelines', 'JIRA / Scrum': 'Agile delivery',
+    'Inventory Mgmt': 'Stock & supply flow', 'HR Management': 'Talent & payroll data',
+    'Adobe Illustrator': 'Vector & brand assets', 'Adobe Photoshop': 'Image & UI graphics', 'Premiere Pro': 'Video editing', 'After Effects': 'Motion graphics',
+    'Figma': 'UI design & specs', 'Canva': 'Rapid graphic design', 'Adobe Audition': 'Audio editing', 'Draw.io': 'Process diagrams',
+    'MS Excel': 'Analysis & reporting', 'MS Word': 'Documentation', 'PowerPoint': 'Presentations', 'MS Access': 'Desktop databases',
+    'MS Project': 'Plans & schedules', 'Social Media Mgmt': 'Content & community', 'Brand Marketing': 'Brand positioning', 'Customer Service': 'Support & empathy'
+  };
+  const LV = {f: 'Foundational', p: 'Proficient', a: 'Advanced', x: 'Expert'};
+
+  /* proficiency scale legend */
+  if (!$('.sk-legend')) {
+    $('.skills-tabs').insertAdjacentHTML('afterend', '<div class="sk-legend" aria-label="Proficiency scale"><span class="sk-legend-t">Proficiency scale</span>' +
+      [['f', 'Foundational', 'under 60'], ['p', 'Proficient', '60–74'], ['a', 'Advanced', '75–84'], ['x', 'Expert', '85+']]
+        .map(([k, n, r]) => `<span class="sk-legend-i" data-lv="${k}"><i></i><b>${n}</b><em>${r}</em></span>`).join('') + '</div>');
+  }
+
   /* boxes */
   Object.entries(D.skills).forEach(([dom, list]) => {
     const grid = $('#tab-' + dom + ' .skills-grid'); if (!grid) return;
-    grid.innerHTML = list.slice().sort((a, b) => b.score - a.score).map((s, i) => {
+    const sorted = list.slice().sort((a, b) => b.score - a.score);
+    grid.innerHTML = sorted.map((s, i) => {
       const [L, k] = lvl(s.score), ic = icons[s.name] || {h: '<i class="fas fa-star"></i>', s: ''}, ev = [...new Set(used(s.name))];
+      const chips = ev.length
+        ? '<small>Applied in</small>' + '<span title="' + App.esc(ev.join(' · ')) + '">' + App.esc(ev[0]) + '</span>' + (ev.length > 1 ? '<span class="more" title="' + App.esc(ev.slice(1).join(' · ')) + '">+' + (ev.length - 1) + '</span>' : '')
+        : '<small>Applied in</small><span class="none">Core toolkit skill</span>';
       return `<article class="skill-pill sk-card" data-lv="${k}" style="--i:${i}">
-        <div class="sk-top"><div class="skill-pill-icon" style="${App.esc(ic.s)}">${ic.h}</div><span class="sk-lvl">${L}</span></div>
-        <div class="skill-pill-info"><span class="skill-pill-name">${App.esc(s.name)}</span>
-          <span class="skill-pct"><b>${s.score}</b>%</span>
-          <div class="skill-bar"><div class="skill-bar-fill" data-w="${s.score}"></div></div></div>
-        <div class="sk-ev">${ev.length ? '<small>Used in</small>' + ev.slice(0, 2).map(e => '<span>' + App.esc(e) + '</span>').join('') + (ev.length > 2 ? '<span class="more">+' + (ev.length - 2) + '</span>' : '') : ''}</div>
+        <div class="sk-head">
+          <div class="skill-pill-icon" style="${App.esc(ic.s)}">${ic.h}</div>
+          <div class="sk-id"><span class="skill-pill-name" title="${App.esc(s.name)}">${App.esc(s.name)}</span><span class="sk-sub">${App.esc(SUB[s.name] || '')}</span></div>
+        </div>
+        <div class="sk-score"><span class="sk-lvl">${L}</span><span class="skill-pct"><b>${s.score}</b><small>%</small></span></div>
+        <div class="sk-meter" role="img" aria-label="${App.esc(s.name)}: ${s.score} percent, ${L}">
+          <div class="skill-bar"><div class="skill-bar-fill" data-w="${s.score}"></div></div>
+          <i style="left:60%"></i><i style="left:75%"></i><i style="left:85%"></i>
+        </div>
+        <div class="sk-ev">${chips}</div>
       </article>`;
     }).join('');
   });

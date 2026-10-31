@@ -69,7 +69,7 @@
 
   function radar(){
     const host = $('#siRadar'); if(!host) return;
-    const W=460,H=420,cx=230,cy=212,R=150,n=DOMAINS.length;
+    const W=600,H=480,cx=300,cy=240,R=178,n=DOMAINS.length;
     const pt=(i,r)=>{const a=-Math.PI/2+i*2*Math.PI/n;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];};
     let g='';
     [.25,.5,.75,1].forEach(k=>{

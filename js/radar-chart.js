@@ -118,7 +118,7 @@ function drawRadar(canvasId, labels, data, color1, color2){
 drawRadar(
   'cvRadarChart',
   ['Frontend','Data/BI','ERP/SAP','Database','UI/UX','Python'],
-  [88,85,78,80,82,88],
+  [88,85,78,80,82,82],
   'rgba(212,129,58,1)',
   'rgba(232,168,78,1)'
 );

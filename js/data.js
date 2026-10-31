@@ -305,19 +305,19 @@ window.PORTFOLIO = Object.freeze({
     "score": 65.0
    },
    {
-    "name": "WordPress (Foundational)",
-    "score": 60.0
+    "name": "WordPress",
+    "score": 55.0
    },
    {
     "name": "GitHub",
     "score": 80.0
    },
    {
-    "name": "Python (Advanced)",
-    "score": 90.0
+    "name": "Python",
+    "score": 82.0
    },
    {
-    "name": "C++ (Basic)",
+    "name": "C++",
     "score": 45.0
    },
    {
@@ -357,7 +357,7 @@ window.PORTFOLIO = Object.freeze({
     "score": 85.0
    },
    {
-    "name": "SAP ERP (FI · CO · SCM)",
+    "name": "SAP ERP",
     "score": 72.0
    },
    {
@@ -395,8 +395,8 @@ window.PORTFOLIO = Object.freeze({
     "score": 65.0
    },
    {
-    "name": "Figma (Foundational)",
-    "score": 62.0
+    "name": "Figma",
+    "score": 55.0
    },
    {
     "name": "Canva",
