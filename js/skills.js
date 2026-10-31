@@ -20,15 +20,15 @@ App.register('skills-v3', () => {
   /* evidence sources — typed, so the drill-in can group and explain them */
   const src = [], pr = D.projects || {};
   (D.experience || []).forEach(e => src.push({
-    k: 'role', l: e.company.replace(/\s*Pvt\.?\s*Ltd\.?/i, ''), sub: e.role, meta: e.period, hl: e.highlights || [],
+    k: 'role', l: e.company.replace(/\s*Pvt\.?\s*Ltd\.?/i, ''), sub: e.role, meta: e.period, hl: e.highlights || [], st: e.stack || [], from: e.start, to: e.end, cur: !!e.current,
     t: [e.role, ...e.stack, ...e.highlights].join(' ').toLowerCase()
   }));
   [pr.featured, ...(pr.others || [])].filter(Boolean).forEach(p => src.push({
-    k: 'project', l: p.title, sub: p.subtitle || (p.stack || []).join(' · '), meta: p.award || '', hl: [p.summary],
+    k: 'project', l: p.title, sub: p.subtitle || '', meta: p.award || '', hl: [p.summary], st: p.stack || [],
     t: [p.title, p.subtitle, p.summary].join(' ').toLowerCase()
   }));
   (D.certifications || []).forEach(c => src.push({
-    k: 'cert', l: c.name, sub: c.provider, meta: c.issuedLabel, hl: [], t: (c.name + ' ' + c.provider).toLowerCase()
+    k: 'cert', l: c.name, sub: c.provider, meta: c.issuedLabel, hl: [], st: [], ver: c.verified, t: (c.name + ' ' + c.provider).toLowerCase()
   }));
   const STOP = new Set(['erp', 'mgmt', 'management', 'platforms', 'platform', 'design', 'data', 'ms', 'adobe', 'basic', 'and']);
   const rx = t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -171,9 +171,25 @@ App.register('skills-v3', () => {
   const panel = $('.sks-panel', sheet);
   let current = null, lastFocus = null;
 
-  const snippet = (s, ev) => {
-    const m = matcher(s.name); if (!m || !ev.hl.length) return '';
-    return ev.hl.find(h => m(h.toLowerCase())) || '';
+  const snippets = (s, ev) => {
+    const m = matcher(s.name); if (!m || !ev.hl.length) return [];
+    return ev.hl.filter(h => m(h.toLowerCase()));
+  };
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthLbl = ym => { const [y, m] = ym.split('-'); return MON[+m - 1] + ' ' + y; };
+  const span = m => { const y = Math.floor(m / 12), r = m % 12; return [y && y + ' yr', r && r + ' mo'].filter(Boolean).join(' ') || '1 mo'; };
+  const facts = s => {
+    const roles = s.ev.filter(e => e.k === 'role'), n = k => s.ev.filter(e => e.k === k).length;
+    const months = roles.reduce((a, e) => a + App.months(e.from, e.to), 0);
+    const since = roles.map(e => e.from).sort()[0];
+    return [[n('role'), n('role') === 1 ? 'Role' : 'Roles'], [n('project'), n('project') === 1 ? 'Project' : 'Projects'], [n('cert'), n('cert') === 1 ? 'Certificate' : 'Certificates'],
+      ...(months ? [[span(months), 'Hands-on time']] : []), ...(since ? [[monthLbl(since), 'In use since']] : [])];
+  };
+  /* skills that keep turning up in the same roles / projects / certificates */
+  const coSkills = s => {
+    const labels = new Set(s.ev.map(e => e.l)); if (!labels.size) return [];
+    return all.filter(o => o.name !== s.name).map(o => ({o, n: o.ev.filter(e => labels.has(e.l)).length})).filter(x => x.n)
+      .sort((a, b) => b.n - a.n || b.o.score - a.o.score).slice(0, 6);
   };
   const render = name => {
     const s = model[name]; if (!s) return;
@@ -185,14 +201,19 @@ App.register('skills-v3', () => {
     const groups = ['role', 'project', 'cert'].map(kind => {
       const items = s.ev.filter(e => e.k === kind); if (!items.length) return '';
       return `<div class="sks-g"><h4><i class="fas ${KIND[kind][1]}"></i>${KIND[kind][0]}<em>${items.length}</em></h4>` + items.map(e => {
-        const sn = snippet(s, e);
-        return `<div class="sks-e"><div class="sks-e-h"><strong>${App.esc(e.l)}</strong>${e.meta ? '<span>' + App.esc(e.meta) + '</span>' : ''}</div>` +
-          (e.sub ? `<div class="sks-e-s">${App.esc(e.sub)}</div>` : '') + (sn ? `<p>${App.esc(sn)}</p>` : '') + '</div>';
+        const sn = snippets(s, e), m = matcher(s.name);
+        const tags = (e.st || []).length ? '<div class="sks-tags">' + e.st.map(t => `<i${m && m(t.toLowerCase()) ? ' class="hit"' : ''}>${App.esc(t)}</i>`).join('') + '</div>' : '';
+        const dur = e.k === 'role' ? ' · ' + span(App.months(e.from, e.to)) : '';
+        return `<div class="sks-e"><div class="sks-e-h"><strong>${App.esc(e.l)}</strong>${e.meta ? '<span>' + App.esc(e.meta) + App.esc(dur) + '</span>' : ''}</div>` +
+          (e.sub ? `<div class="sks-e-s">${App.esc(e.sub)}${e.k === 'cert' && e.ver ? ' <b class="sks-v"><i class="fas fa-circle-check"></i> Verified</b>' : ''}</div>` : '') +
+          sn.map(x => `<p>${App.esc(x)}</p>`).join('') + tags + '</div>';
       }).join('') + '</div>';
     }).join('');
+    const fx = facts(s), co = coSkills(s);
+    const coH = co.length ? `<div class="sks-rel"><h4>Often used with</h4><div>${co.map(x => `<button type="button" class="sks-r" data-open="${App.esc(x.o.name)}" title="${x.n} shared place${x.n > 1 ? 's' : ''}"><b>${App.esc(x.o.name)}</b><i>${x.o.score}%</i></button>`).join('')}</div></div>` : '';
     const rel = sib.filter(n => n !== name).map(n => `<button type="button" class="sks-r" data-open="${App.esc(n)}"><b>${App.esc(n)}</b><i>${model[n].score}%</i></button>`).join('');
     panel.dataset.lv = k;
-    panel.innerHTML = `<button type="button" class="sks-x" data-close aria-label="Close details"><i class="fas fa-xmark"></i></button>
+    panel.innerHTML = `<button type="button" class="sks-share" data-share aria-label="Copy link to this skill" title="Copy link"><i class="fas fa-link"></i></button><button type="button" class="sks-x" data-close aria-label="Close details"><i class="fas fa-xmark"></i></button>
       <div class="sks-nav"><button type="button" data-step="-1" aria-label="Previous skill" ${idx === 0 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i></button>
         <span>${App.esc(DOM[s.dom])} · ${idx + 1} of ${sib.length}</span>
         <button type="button" data-step="1" aria-label="Next skill" ${idx === sib.length - 1 ? 'disabled' : ''}><i class="fas fa-chevron-right"></i></button></div>
@@ -201,9 +222,10 @@ App.register('skills-v3', () => {
       <div class="sks-score"><span class="sk-lvl">${L}</span><span class="sks-pct"><b>${s.score}</b>%</span></div>
       <div class="sks-meter"><div class="sks-fill" style="--w:${s.score}%"></div><i style="left:60%"></i><i style="left:75%"></i><i style="left:85%"></i></div>
       <p class="sks-gap">${gap}</p>
+      <div class="sks-facts">${fx.map(([v, l]) => `<div><b>${App.esc(v)}</b><span>${l}</span></div>`).join('')}</div>
       <div class="sks-body"><div class="sks-h"><h4>Where I've applied it</h4><span>${s.ev.length ? s.ev.length + ' place' + (s.ev.length > 1 ? 's' : '') : 'Core toolkit'}</span></div>
         ${groups || '<p class="sks-none">A core toolkit skill — used day to day across my work and studies rather than tied to one named role, project or certificate.</p>'}</div>
-      ${rel ? `<div class="sks-rel"><h4>More in ${App.esc(DOM[s.dom])}</h4><div>${rel}</div></div>` : ''}`;
+      ${coH}${rel ? `<div class="sks-rel"><h4>More in ${App.esc(DOM[s.dom])}</h4><div>${rel}</div></div>` : ''}`;
     panel.scrollTop = 0;
   };
   const focusables = () => [...panel.querySelectorAll('button:not([disabled])')];
@@ -211,11 +233,13 @@ App.register('skills-v3', () => {
     if (!model[name]) return;
     if (!sheet.classList.contains('open')) { lastFocus = trigger || document.activeElement; document.body.style.overflow = 'hidden'; }
     render(name); sheet.classList.add('open');
+    try { history.replaceState(null, '', '#skill=' + encodeURIComponent(name)); } catch (_) {}
     requestAnimationFrame(() => { sheet.classList.add('on'); const x = $('.sks-x', panel); if (x) x.focus({preventScroll: true}); });
   };
   const close = () => {
     if (!sheet.classList.contains('open')) return;
     sheet.classList.remove('on'); document.body.style.overflow = '';
+    try { if (/^#skill=/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search + '#skills'); } catch (_) {}
     setTimeout(() => sheet.classList.remove('open'), 240);
     if (lastFocus && lastFocus.focus) lastFocus.focus({preventScroll: true});
   };
@@ -223,6 +247,11 @@ App.register('skills-v3', () => {
 
   sheet.addEventListener('click', e => {
     if (e.target.closest('[data-close]')) return close();
+    if (e.target.closest('[data-share]')) {
+      const u = location.href.split('#')[0] + '#skill=' + encodeURIComponent(current);
+      (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => App.toast('Link to ' + current + ' copied'), () => App.toast(u));
+      return;
+    }
     const st = e.target.closest('[data-step]'); if (st) return step(+st.dataset.step);
     const o = e.target.closest('[data-open]'); if (o) open(o.dataset.open);
   });
@@ -282,5 +311,7 @@ App.register('skills-v3', () => {
   });
   document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-skill-open]'); if (b) open(b.dataset.skillOpen, b); });
 
+  const deep = () => { const m = /^#skill=(.+)$/.exec(location.hash); if (m && model[decodeURIComponent(m[1])]) { const n = decodeURIComponent(m[1]); host.scrollIntoView(); setTimeout(() => open(n), 400); } };
+  deep(); addEventListener('hashchange', deep);
   App.skillSheet = {open, close};
 });
