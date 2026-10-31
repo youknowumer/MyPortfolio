@@ -1,0 +1,13 @@
+/* Projects v2 — card affordances + sheet extras (sheet base lives in skills.css) */
+.proj-card,.featured-proj{cursor:pointer}
+.proj-card:focus-visible,.featured-proj:focus-visible,.hero-floating-card:focus-visible{outline:2px solid #D4813A;outline-offset:4px}
+.pj-go{margin-left:auto;font:700 .68rem Sora,sans-serif;font-style:normal;letter-spacing:.06em;color:#A85E22;display:inline-flex;align-items:center;gap:.4rem;opacity:.8;transition:opacity .25s,gap .25s}
+.proj-card:hover .pj-go,.featured-proj:hover .pj-go,.proj-card:focus-visible .pj-go{opacity:1;gap:.7rem}
+.pj-go-row{display:flex;margin-top:.9rem;padding-top:.7rem;border-top:1px dashed rgba(212,129,58,.3)}
+.featured-label{display:flex;align-items:center;gap:.5rem}
+.mq-item[data-skill-open]:hover{color:#A85E22}
+.hero-floating-card[data-skill-open],.hero-floating-card[data-project-open]{transition:filter .2s}
+.hero-floating-card[data-skill-open]:hover,.hero-floating-card[data-project-open]:hover{filter:brightness(1.04)}
+.pjs-sum{margin:.2rem 0 0;font:400 .84rem/1.7 Sora,sans-serif;color:#4A2E10}
+.pjs-aw{font:700 .68rem Sora,sans-serif;color:#A85E22;text-align:right;max-width:60%}
+.pjs-t{display:inline-flex;align-items:center;padding:.38rem .75rem;border-radius:999px;background:rgba(138,104,64,.08);font:600 .72rem Sora,sans-serif;color:#6b4a22}
