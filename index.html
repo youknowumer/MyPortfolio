@@ -34,6 +34,7 @@
 <link rel="stylesheet" href="css/awards.css">
 <link rel="stylesheet" href="css/edge-blur.css">
 <link rel="stylesheet" href="css/about.css">
+<link rel="stylesheet" href="css/welcome.css">
 
 </head>
 <body>
@@ -72,19 +73,28 @@
 </div>
 
 <!-- WELCOME OVERLAY -->
-<div class="wov">
+<div class="wov" id="welcome" role="dialog" aria-label="Welcome to Muhammad Umer Faheem's portfolio">
   <div class="wbox">
-    <span class="w-icon">👋</span>
-    <h1>Umer Faheem</h1>
-    <p class="w-sub">ERP Management Trainee · BI Enthusiast</p>
-    <p class="w-desc">Turning digital strategy into user-centric experiences<br>through design, data, and technology.</p>
+    <span class="w-icon" aria-hidden="true">👋</span>
+    <p class="w-hello">Welcome · Assalam-o-Alaikum</p>
+    <h1>Muhammad Umer Faheem</h1>
+    <p class="w-sub">Management Trainee Officer – ERP</p>
+    <p class="w-co"><i class="fas fa-building" aria-hidden="true"></i> Maryum N Maria · Lahore<span class="w-live"><i></i>Open to opportunities</span></p>
+    <p class="w-desc">Implementing Odoo ERP, mapping SAP processes and turning data into decisions<br>through design, data, and technology.</p>
+    <div class="w-stats" aria-label="At a glance">
+      <div><b data-w="certs">9</b><span>Certifications</span></div>
+      <div><b data-w="skills">36</b><span>Skills</span></div>
+      <div><b data-w="roles">4</b><span>Roles</span></div>
+      <div><b>Top 3</b><span>ICAISAI'26</span></div>
+    </div>
     <div class="w-badges">
-      <span class="wb">🎓 BBIS Graduate ’26</span>
+      <span class="wb">🎓 BBIS Graduate ’26 · UMT</span>
       <span class="wb">💻 Odoo ERP</span>
       <span class="wb">📊 Power BI</span>
-      <span class="wb">🏆 ICAISAI'26</span>
+      <span class="wb">🏆 Best ERP Innovative Idea</span>
     </div>
     <div class="w-bar"><div class="w-bar-i"></div></div>
+    <button type="button" class="w-skip" id="wSkip">Skip intro <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
   </div>
 </div>
 
@@ -2084,5 +2094,6 @@
 <script src="js/experience.js" defer></script>
 <script src="js/edge-blur.js" defer></script>
 <script src="js/about.js" defer></script>
+<script src="js/welcome.js" defer></script>
 </body>
 </html>

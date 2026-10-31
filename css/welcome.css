@@ -1,0 +1,30 @@
+/* Welcome card — current role, live stats, skippable. Loaded after the older .wbox rules so it wins. */
+.wov{animation:wOut .9s ease-in-out 4.4s forwards}
+.wov.is-out{animation:wOut .45s ease forwards}
+.wbox{max-width:660px;padding:3rem 3.2rem 2.4rem}
+.wbox h1{font-size:clamp(2rem,5.2vw,2.9rem);line-height:1.1;letter-spacing:-.5px;margin:.2rem 0 .5rem}
+.w-icon{font-size:3.4rem;margin-bottom:.2rem}
+.w-hello{margin:0 0 .2rem;font:700 .7rem Sora,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#8A6840;opacity:0;animation:fU .7s ease .5s both}
+.w-sub{font-size:.82rem;letter-spacing:2px}
+.w-co{display:flex;flex-wrap:wrap;gap:.45rem .9rem;align-items:center;justify-content:center;margin:.55rem 0 0;font:600 .8rem Sora,sans-serif;color:#6b4a22;opacity:0;animation:fU .7s ease 1.05s both}
+.w-co>i{color:#D4813A}
+.w-live{display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .65rem;border-radius:999px;background:rgba(34,160,90,.12);border:1px solid rgba(34,160,90,.3);color:#17793f;font-size:.7rem;font-weight:700}
+.w-live i{width:7px;height:7px;border-radius:50%;background:#22a05a;box-shadow:0 0 0 0 rgba(34,160,90,.6);animation:wPing 1.6s infinite}
+@keyframes wPing{70%{box-shadow:0 0 0 7px rgba(34,160,90,0)}100%{box-shadow:0 0 0 0 rgba(34,160,90,0)}}
+.w-desc{margin:.8rem 0 1.1rem;font-size:.9rem}
+.w-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:0 0 1.1rem;opacity:0;animation:fU .7s ease 1.25s both}
+.w-stats div{padding:.65rem .4rem;border-radius:16px;background:rgba(255,255,255,.6);border:1px solid rgba(212,129,58,.2)}
+.w-stats b{display:block;font:800 1.3rem/1.1 Sora,sans-serif;letter-spacing:-.02em;background:linear-gradient(135deg,#A85E22,#E8A84E);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.w-stats span{display:block;margin-top:.15rem;font:600 .6rem Sora,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#8A6840}
+.w-bar{animation-delay:1.55s}
+.w-bar-i{animation-duration:4.4s}
+.w-skip{margin:1rem auto 0;display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:999px;border:1px solid rgba(212,129,58,.3);background:rgba(255,255,255,.7);color:#A85E22;font:700 .72rem Sora,sans-serif;letter-spacing:.06em;cursor:pointer;opacity:0;animation:fU .6s ease 1.8s both;transition:background .2s,transform .2s}
+.w-skip:hover{background:#fff;transform:translateX(2px)}
+.w-skip:focus-visible{outline:2px solid #D4813A;outline-offset:2px}
+@media(max-width:560px){
+  .wbox{padding:2.2rem 1.3rem 1.8rem}
+  .w-stats{grid-template-columns:repeat(2,1fr)}
+  .w-badges{gap:.4rem}.wb{font-size:.68rem;padding:.32rem .75rem}
+}
+@media(prefers-reduced-motion:reduce){.w-live i{animation:none}}
+@media(max-width:560px){.w-desc br{display:none}}
