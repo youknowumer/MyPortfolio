@@ -1,0 +1,36 @@
+/* Certifications v2 — toolbar, card affordances, drill-in extras (sheet base styles live in skills.css) */
+#certifications .cert-tools{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-bottom:2rem}
+#certifications .cf-btn em{font-style:normal;margin-left:.3rem;padding:.04rem .45rem;border-radius:99px;background:rgba(212,129,58,.16);font-size:.68rem;font-weight:800}
+#certifications .cf-btn.on em{background:rgba(255,255,255,.3)}
+.ct-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.7rem 1rem;width:100%}
+.ct-find{display:flex;align-items:center;gap:.6rem;flex:1 1 280px;max-width:420px;padding:0 1rem;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid rgba(212,129,58,.28);box-shadow:0 6px 18px rgba(168,94,34,.08)}
+.ct-find:focus-within{border-color:#D4813A;box-shadow:0 0 0 3px rgba(212,129,58,.18)}
+.ct-find i{color:#D4813A}
+.ct-find input{flex:1;min-width:0;border:0;outline:0;background:transparent;padding:.7rem 0;font:500 .85rem Sora,sans-serif;color:#1A1008}
+.ct-sort{display:flex;align-items:center;gap:.5rem;font:700 .66rem Sora,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#8A6840}
+.ct-sort select{appearance:none;-webkit-appearance:none;padding:.6rem 2rem .6rem 1rem;border-radius:999px;border:1px solid rgba(212,129,58,.28);background:rgba(255,255,255,.75) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23A85E22' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat right .85rem center;font:600 .78rem Sora,sans-serif;color:#1A1008;text-transform:none;letter-spacing:0;cursor:pointer}
+.ct-sort select:focus-visible{outline:2px solid #D4813A;outline-offset:2px}
+.ct-n{font:700 .72rem Sora,sans-serif;color:#A85E22;min-width:4.5rem;text-align:center}
+.ct-empty{text-align:center;color:#8A6840;font:500 .9rem Sora,sans-serif;margin:1.5rem 0}
+.cert-card.ct-off{display:none}
+
+/* cards */
+.cert-card{cursor:pointer;position:relative}
+.cert-card:focus-visible{outline:2px solid #D4813A;outline-offset:3px}
+.ct-go{margin-left:auto;font:700 .66rem Sora,sans-serif;font-style:normal;letter-spacing:.06em;color:#A85E22;display:inline-flex;align-items:center;gap:.35rem;opacity:.75;transition:opacity .25s,gap .25s}
+.cert-card:hover .ct-go,.cert-card:focus-visible .ct-go{opacity:1;gap:.6rem}
+.ct-new{position:absolute;top:.7rem;right:.8rem;padding:.14rem .55rem;border-radius:999px;background:linear-gradient(135deg,#D4813A,#E8A84E);color:#fff;font:800 .54rem Sora,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.cb-row:focus-visible{outline:2px solid #D4813A;outline-offset:2px;border-radius:8px}
+
+/* sheet extras */
+.cvs-ic{color:#fff;width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:1.4rem}
+.cvs-date{font-size:1rem!important}
+.cvs-path{position:relative;display:flex;justify-content:space-between;align-items:center;gap:.2rem;padding:.4rem .2rem}
+.cvs-path::before{content:"";position:absolute;left:.9rem;right:.9rem;top:50%;height:2px;background:rgba(212,129,58,.25);transform:translateY(-50%)}
+.cvs-n{position:relative;appearance:none;-webkit-appearance:none;width:26px;height:26px;border-radius:50%;border:2px solid rgba(212,129,58,.35);background:#fff;color:#8A6840;font:700 .62rem Sora,sans-serif;cursor:pointer;display:grid;place-items:center;transition:transform .2s,border-color .2s}
+.cvs-n.same{border-color:#D4813A}
+.cvs-n.on{width:32px;height:32px;background:linear-gradient(135deg,#D4813A,#E8A84E);border-color:#fff;color:#fff;box-shadow:0 4px 12px rgba(168,94,34,.35)}
+.cvs-n:hover{transform:scale(1.15)}
+.cvs-cap{margin:.5rem 0 0;font:500 .68rem Sora,sans-serif;color:#8A6840}
+.cvs .sks-facts{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+@media(max-width:640px){.ct-find{max-width:none}.cvs-n{width:22px;height:22px}.cvs-n.on{width:28px;height:28px}}

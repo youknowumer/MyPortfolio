@@ -313,5 +313,6 @@ App.register('skills-v3', () => {
 
   const deep = () => { const m = /^#skill=(.+)$/.exec(location.hash); if (m && model[decodeURIComponent(m[1])]) { const n = decodeURIComponent(m[1]); host.scrollIntoView(); setTimeout(() => open(n), 400); } };
   deep(); addEventListener('hashchange', deep);
+  App.skillModel = model;
   App.skillSheet = {open, close};
 });
